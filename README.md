@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Teacher AI App
 
-## Getting Started
+SaaS educativo impulsado por IA para profesorado de inglés profesional en Formación Profesional.
 
-First, run the development server:
+## Visión General
+
+Teacher AI App ayuda a docentes de FP a crear y adaptar recursos de inglés contextualizados por familia profesional, ciclo, nivel y situación laboral. El producto se centra en recursos prácticos para FP Básica, Grado Medio y Grado Superior, con progresión lingüística desde A2-low hasta B1-high.
+
+La aplicación está pensada para generar materiales revisables: emails profesionales, role plays, listenings, worksheets, readings, exámenes breves, vocabulario técnico y actividades comunicativas conectadas con el mundo laboral.
+
+## Funcionalidades Actuales
+
+- Dashboard FP-first con grupos, recursos recientes y métricas.
+- Taxonomía base de familias profesionales.
+- Subniveles lingüísticos A2-low, A2, A2-high, B1-low, B1 y B1-high.
+- Mock data de grupos, vocabulario, gramática, escenarios y recursos.
+- Arquitectura de IA simulada con prompts separados por tipo de recurso.
+- Estado cliente modular con Zustand.
+
+## Familias Profesionales Iniciales
+
+- Administración y Gestión.
+- Comercio y Marketing.
+- Informática y Comunicaciones.
+- Hostelería y Turismo.
+- Imagen Personal.
+
+## Ejemplos De Situaciones Profesionales
+
+- Escribir un email para realizar un pedido a un proveedor.
+- Responder a una queja de cliente.
+- Atender una llamada de soporte técnico.
+- Confirmar una reserva de hotel.
+- Responder a un cliente que pide cita en una peluquería.
+
+## Stack
+
+- Next.js 16.2.6.
+- App Router.
+- React 19.2.4.
+- TypeScript 5.
+- Tailwind CSS 4.
+- Zustand.
+- ESLint 9.
+- npm.
+
+## Instalación
+
+```bash
+npm install
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Verificación
 
-## Learn More
+```bash
+npx tsc --noEmit
+npm run lint
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Estructura Principal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+app/
+components/
+  dashboard/
+  layout/
+  ui/
+hooks/
+lib/
+  ai/
+    prompts/
+  mock-data/
+store/
+types/
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Roadmap Próximo
 
-## Deploy on Vercel
+### Fase 6: Settings Y Configuración Docente
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Preferencias del profesor.
+- Familias profesionales que imparte.
+- Subnivel por grupo.
+- Parámetros de generación.
+- Bancos propios de vocabulario y gramática.
+- Persistencia local inicial.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Fase 7: Biblioteca FP
+
+- Filtros por familia profesional, ciclo, subnivel, skill y escenario.
+- Vista detallada de recurso.
+- Duplicado, adaptación y regeneración.
+
+### Fase 8: IA Real
+
+- Route Handler seguro para generación.
+- Integración con proveedor IA barato.
+- Salida estructurada en JSON.
+- Límites de uso y control de coste.
+
+### Fase 9: Supabase Y Producto SaaS
+
+- Autenticación.
+- Persistencia de grupos, recursos y bancos.
+- Planes y límites.
+- Métricas de uso.
+
+## Principios
+
+- FP-first.
+- Ejemplos profesionales realistas.
+- IA como asistente, no como sustituto docente.
+- Revisión humana obligatoria.
+- Arquitectura modular y preparada para crecer.
