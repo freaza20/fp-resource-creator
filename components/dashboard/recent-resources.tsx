@@ -5,10 +5,10 @@ import { useResourcesStore } from "@/store/useResourcesStore";
 import type { ResourceType } from "@/types/resource";
 
 const resourceTypeLabels: Record<ResourceType, string> = {
-  reading: "Reading",
-  worksheet: "Worksheet",
-  listening: "Listening",
-  exam: "Exam",
+  reading: "Lectura",
+  worksheet: "Ficha",
+  listening: "Escucha",
+  exam: "Prueba",
 };
 
 const resourceTypeStyles: Record<ResourceType, string> = {

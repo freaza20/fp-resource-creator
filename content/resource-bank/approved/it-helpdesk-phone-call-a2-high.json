@@ -1,9 +1,11 @@
 {
   "id": "it-helpdesk-phone-call-a2-high",
-  "title": "Listening guiado: llamada al soporte técnico",
+  "title": "Escucha guiada: llamada al soporte técnico",
   "type": "listening",
   "professionalFamily": "Informática y Comunicaciones",
   "vocationalLevel": "Grado Medio",
+  "learningTrack": "professional",
+  "supportLevel": "medium",
   "languageLevel": "A2-high",
   "scenario": "Atender una incidencia técnica sencilla por teléfono",
   "skillFocus": ["listening", "speaking", "customer-service"],
@@ -22,8 +24,8 @@
         ]
       },
       {
-        "title": "Follow-up speaking",
-        "body": "Student A is the customer. Student B is the technician. Change the problem: slow computer, no internet connection or forgotten password."
+        "title": "Práctica oral de seguimiento",
+        "body": "Alumno A: eres el cliente. Alumno B: eres el técnico. Cambiad el problema: ordenador lento, sin conexión a internet o contraseña olvidada."
       }
     ],
     "answerKey": [

@@ -1,7 +1,9 @@
 import {
   languageSublevels,
+  learningTracks,
   professionalFamilies,
   resourceTypes,
+  supportLevels,
 } from "@/lib/resource-bank/constants";
 import type {
   ResourceBankCoverageCell,
@@ -50,6 +52,24 @@ export function calculateResourceBankCoverage(
     count,
   }));
 
+  const coverageByLearningTrack = countBy(
+    learningTracks,
+    items,
+    (item) => item.learningTrack,
+  ).map(({ value, count }) => ({
+    learningTrack: value,
+    count,
+  }));
+
+  const coverageBySupportLevel = countBy(
+    supportLevels,
+    items,
+    (item) => item.supportLevel,
+  ).map(({ value, count }) => ({
+    supportLevel: value,
+    count,
+  }));
+
   const matrix: ResourceBankCoverageCell[] = professionalFamilies.flatMap(
     (professionalFamily: ProfessionalFamily) =>
       languageSublevels.map((languageLevel: LanguageSublevel) => ({
@@ -67,6 +87,8 @@ export function calculateResourceBankCoverage(
     totalResources: items.length,
     totalFamilies: professionalFamilies.length,
     coveredFamilies: coverageByFamily.filter((entry) => entry.count > 0).length,
+    coverageByLearningTrack,
+    coverageBySupportLevel,
     uncoveredFamilies: coverageByFamily
       .filter((entry) => entry.count === 0)
       .map((entry) => entry.professionalFamily),

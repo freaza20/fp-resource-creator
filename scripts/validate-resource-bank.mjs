@@ -40,6 +40,8 @@ const allowedValues = {
     "Vidrio y Cerámica",
   ],
   vocationalLevel: ["FP Básica", "Grado Medio", "Grado Superior"],
+  learningTrack: ["foundation", "professional"],
+  supportLevel: ["high", "medium", "low"],
   languageLevel: ["A2-low", "A2", "A2-high", "B1-low", "B1", "B1-high"],
   skillFocus: [
     "reading",
@@ -116,6 +118,10 @@ const validateResource = (item) => {
     item.skillFocus.some((skill) => !allowedValues.skillFocus.includes(skill))
   ) {
     errors.push("skillFocus contiene valores no permitidos.");
+  }
+
+  if (item.vocationalLevel === "FP Básica" && item.learningTrack !== "foundation") {
+    errors.push("Los recursos de FP Básica deben usar learningTrack foundation.");
   }
 
   if (

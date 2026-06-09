@@ -1,5 +1,7 @@
 import adminSupplierOrder from "@/content/resource-bank/approved/admin-supplier-order-email-a2-low.json";
 import commerceCustomerComplaint from "@/content/resource-bank/approved/commerce-customer-complaint-b1-low.json";
+import foundationAskForHelp from "@/content/resource-bank/approved/foundation-ask-for-help-a2-low.json";
+import foundationWorkTimetable from "@/content/resource-bank/approved/foundation-work-timetable-a2-low.json";
 import hairdressingAppointmentReply from "@/content/resource-bank/approved/hairdressing-appointment-reply-a2.json";
 import hospitalityBookingConfirmation from "@/content/resource-bank/approved/hospitality-booking-confirmation-b1.json";
 import itHelpdeskPhoneCall from "@/content/resource-bank/approved/it-helpdesk-phone-call-a2-high.json";
@@ -10,6 +12,8 @@ import type { ResourceBankItem } from "@/types/resource-bank";
 const approvedResourceBankJson = [
   adminSupplierOrder,
   commerceCustomerComplaint,
+  foundationAskForHelp,
+  foundationWorkTimetable,
   itHelpdeskPhoneCall,
   hairdressingAppointmentReply,
   hospitalityBookingConfirmation,

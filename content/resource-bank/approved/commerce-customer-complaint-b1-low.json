@@ -4,6 +4,8 @@
   "type": "reading",
   "professionalFamily": "Comercio y Marketing",
   "vocationalLevel": "Grado Medio",
+  "learningTrack": "professional",
+  "supportLevel": "medium",
   "languageLevel": "B1-low",
   "scenario": "Gestionar una queja de cliente en una tienda online",
   "skillFocus": ["reading", "customer-service", "vocabulary"],

@@ -10,6 +10,7 @@ La app no debe comportarse como un generador genérico de inglés. Su valor est�
 - Situaciones profesionales reales.
 - Adaptación por familia de FP.
 - Nivel lingüístico ajustado al grupo.
+- Línea pedagógica diferenciada para FP Básica.
 - Revisión y criterio docente.
 
 ## Capas Del Modelo
@@ -50,6 +51,8 @@ Debe indicar:
 - Escenario asociado.
 - Familias compatibles.
 - Niveles lingüísticos recomendados.
+- Línea pedagógica: `foundation` o `professional`.
+- Nivel de apoyo por defecto: `high`, `medium` o `low`.
 - Tipos de recurso posibles.
 - Objetivo comunicativo.
 - Uso docente.
@@ -66,6 +69,8 @@ Debe tener:
 
 - Familia profesional.
 - Nivel de FP.
+- Línea pedagógica.
+- Nivel de apoyo.
 - Subnivel lingüístico.
 - Escenario.
 - Skill focus.
@@ -76,6 +81,43 @@ Debe tener:
 
 Los recursos nuevos generados por agentes deben entrar primero en `content/resource-bank/pending/`.
 
+### FP Básica Como Línea Foundation
+
+FP Básica debe tratarse como una línea pedagógica propia dentro de la app.
+
+No debe modelarse como una versión más fácil de Grado Medio o Superior. En muchos grupos, Inglés forma parte del Ámbito de Comunicación y Ciencias Sociales y la prioridad real es reconstruir bases, recuperar confianza y conectar el idioma con tareas laborales muy concretas.
+
+Los recursos de FP Básica deben usar:
+
+- `learningTrack: "foundation"`
+- `supportLevel: "high"` como punto de partida habitual
+- duración corta, preferiblemente 15-25 minutos
+- instrucciones muy simples
+- frases modelo
+- repetición y cambios mínimos
+- tareas de unir, completar, ordenar, elegir y decir una frase
+- producción escrita de una frase o mensaje muy breve
+- role plays de 2-4 turnos
+- éxito rápido y visible
+
+Ejemplos adecuados:
+
+- Entender un horario de trabajo.
+- Pedir ayuda.
+- Presentarse en un entorno laboral.
+- Identificar herramientas.
+- Leer una señal de seguridad.
+- Completar una ficha básica.
+- Avisar de una ausencia con un mensaje corto.
+
+Ejemplos a evitar en FP Básica:
+
+- Emails largos de 100-150 palabras.
+- Readings extensos con preguntas abstractas.
+- Role plays sin andamiaje.
+- Tareas que dependan de precisión gramatical alta.
+- Recursos profesionales complejos sin recuperación de básicos.
+
 ### 5. Cobertura Editorial
 
 La cobertura permite saber qué hay y qué falta.
@@ -84,10 +126,19 @@ La app calcula cobertura por:
 
 - Familia profesional.
 - Subnivel lingüístico.
+- Línea pedagógica.
+- Nivel de apoyo.
 - Tipo de recurso.
 - Matriz familia x nivel.
 
 Esto ayuda a decidir qué recursos generar después, evitando que el banco crezca de forma desequilibrada.
+
+La pantalla `/library` muestra una primera lectura de esa cobertura para que el docente o editor vea:
+
+- Recursos aprobados disponibles.
+- Familias ya cubiertas.
+- Familias sin recursos.
+- Próximas prioridades editoriales.
 
 ## Priorización Recomendada
 
@@ -145,6 +196,35 @@ Los formatos más valiosos son:
 - Mini-exámenes.
 - Tareas finales por situación profesional.
 - Rúbricas de speaking y writing.
+
+## Uso De La Biblioteca
+
+La biblioteca debe permitir al profesorado encontrar un recurso en menos de un minuto.
+
+Por eso la experiencia debe priorizar:
+
+- Búsqueda por palabras reales: queja, reserva, pedido, soporte, cita.
+- Filtros por familia profesional.
+- Filtros por subnivel lingüístico.
+- Filtros por línea pedagógica.
+- Filtros por nivel de apoyo.
+- Filtros por tipo de recurso.
+- Filtros por skill.
+- Vista rápida del contenido y notas docentes.
+- Acción para usar un recurso como base de adaptación.
+
+La adaptación con IA llegará después, pero la interfaz ya debe tratar cada recurso como un punto de partida editable.
+
+## Política Lingüística Del Producto
+
+La herramienta está dirigida a profesorado de FP en España. Por tanto:
+
+- La interfaz debe estar en español.
+- Los filtros, botones, métricas y etiquetas visibles deben estar en español.
+- Las notas docentes deben estar en español.
+- Los textos que forman parte del input didáctico pueden estar en inglés.
+- En FP Básica, las instrucciones deben ser preferiblemente en español o mixtas con alto andamiaje.
+- En Grado Medio y Superior, el input y la producción pueden usar más inglés según el objetivo.
 
 ## Criterios De Calidad
 

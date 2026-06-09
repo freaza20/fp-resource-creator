@@ -4,6 +4,8 @@
   "type": "worksheet",
   "professionalFamily": "Imagen Personal",
   "vocationalLevel": "FP Básica",
+  "learningTrack": "foundation",
+  "supportLevel": "high",
   "languageLevel": "A2",
   "scenario": "Confirmar una cita de peluquería por mensaje",
   "skillFocus": ["writing", "customer-service", "vocabulary"],

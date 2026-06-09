@@ -4,6 +4,8 @@
   "type": "worksheet",
   "professionalFamily": "Administración y Gestión",
   "vocationalLevel": "FP Básica",
+  "learningTrack": "foundation",
+  "supportLevel": "high",
   "languageLevel": "A2-low",
   "scenario": "Realizar un pedido básico a un proveedor",
   "skillFocus": ["writing", "vocabulary"],

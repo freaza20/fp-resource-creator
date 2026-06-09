@@ -8,6 +8,13 @@ import type { ResourceType } from "@/types/resource";
 
 const resourceTypes: ResourceType[] = ["reading", "worksheet", "listening", "exam"];
 
+const resourceTypeLabels: Record<ResourceType, string> = {
+  exam: "Prueba",
+  listening: "Escucha",
+  reading: "Lectura",
+  worksheet: "Ficha",
+};
+
 export function QuickGenerator() {
   const selectedResourceType = useGeneratorStore(
     (state) => state.selectedResourceType,
@@ -36,7 +43,7 @@ export function QuickGenerator() {
           </p>
         </div>
         <span className="rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">
-          Mock IA
+          IA simulada
         </span>
       </div>
 
@@ -48,7 +55,7 @@ export function QuickGenerator() {
           <div className="mt-2 grid grid-cols-2 gap-2">
             {resourceTypes.map((type) => (
               <button
-                className={`rounded-md border px-3 py-2 text-sm font-medium capitalize transition-colors ${
+                className={`rounded-md border px-3 py-2 text-sm font-medium transition-colors ${
                   currentResourceType === type
                     ? "border-zinc-950 bg-zinc-950 text-white dark:border-zinc-50 dark:bg-zinc-50 dark:text-zinc-950"
                     : "border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900"
@@ -57,7 +64,7 @@ export function QuickGenerator() {
                 onClick={() => setSelectedResourceType(type)}
                 type="button"
               >
-                {type}
+                {resourceTypeLabels[type]}
               </button>
             ))}
           </div>
@@ -73,7 +80,7 @@ export function QuickGenerator() {
               Función comunicativa
             </span>
             <span className="mt-1 block text-sm font-semibold text-zinc-950 dark:text-zinc-50">
-              Modals for advice and safety rules
+              Modales para consejos y normas de seguridad
             </span>
           </button>
           <button
@@ -85,7 +92,7 @@ export function QuickGenerator() {
               Banco recomendado
             </span>
             <span className="mt-1 block text-sm font-semibold text-zinc-950 dark:text-zinc-50">
-              IT support and troubleshooting
+              Soporte técnico y resolución de incidencias
             </span>
           </button>
         </div>

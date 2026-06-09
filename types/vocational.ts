@@ -28,6 +28,10 @@ export type ProfessionalFamily =
 
 export type VocationalLevel = "FP Básica" | "Grado Medio" | "Grado Superior";
 
+export type LearningTrack = "foundation" | "professional";
+
+export type SupportLevel = "high" | "medium" | "low";
+
 export type LanguageSublevel =
   | "A2-low"
   | "A2"

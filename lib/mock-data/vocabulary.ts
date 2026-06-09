@@ -3,7 +3,7 @@ import type { VocabularySet } from "@/types/vocabulary";
 export const vocabularySets = [
   {
     id: "vocab-admin-orders",
-    title: "Orders and suppliers",
+    title: "Pedidos y proveedores",
     category: "supplier-communication",
     professionalFamily: "Administración y Gestión",
     scenario: "supplier-order-email",
@@ -21,7 +21,7 @@ export const vocabularySets = [
   },
   {
     id: "vocab-commerce-complaints",
-    title: "Customer complaints and solutions",
+    title: "Quejas de clientes y soluciones",
     category: "customer-service",
     professionalFamily: "Comercio y Marketing",
     scenario: "complaint-response",
@@ -39,7 +39,7 @@ export const vocabularySets = [
   },
   {
     id: "vocab-it-helpdesk",
-    title: "Helpdesk troubleshooting",
+    title: "Soporte técnico y resolución de incidencias",
     category: "technical-support",
     professionalFamily: "Informática y Comunicaciones",
     scenario: "helpdesk-password-reset",
@@ -57,7 +57,7 @@ export const vocabularySets = [
   },
   {
     id: "vocab-hospitality-bookings",
-    title: "Bookings and guest information",
+    title: "Reservas e información de huéspedes",
     category: "hospitality-service",
     professionalFamily: "Hostelería y Turismo",
     scenario: "hotel-booking-confirmation",
@@ -75,7 +75,7 @@ export const vocabularySets = [
   },
   {
     id: "vocab-salon-appointments",
-    title: "Salon appointments and services",
+    title: "Citas y servicios de peluquería",
     category: "salon-services",
     professionalFamily: "Imagen Personal",
     scenario: "salon-appointment",

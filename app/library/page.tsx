@@ -1,7 +1,8 @@
-import { ResourceBankCard } from "@/components/library/resource-bank-card";
+import { LibraryWorkspace } from "@/components/library/library-workspace";
 import { Sidebar } from "@/components/layout/sidebar";
 import {
   approvedResourceBankItems,
+  resourceBankCoverage,
   resourceBankStats,
 } from "@/lib/resource-bank/approved-resource-bank";
 
@@ -47,7 +48,7 @@ export default function LibraryPage() {
               </div>
             </section>
 
-            <section className="flex flex-wrap gap-2" aria-label="Filtros destacados">
+            <section className="flex flex-wrap gap-2" aria-label="Familias destacadas">
               {featuredFilters.map((filter) => (
                 <span
                   className="rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-600 shadow-sm shadow-zinc-200/40 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:shadow-black/20"
@@ -58,11 +59,10 @@ export default function LibraryPage() {
               ))}
             </section>
 
-            <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {approvedResourceBankItems.map((item) => (
-                <ResourceBankCard item={item} key={item.id} />
-              ))}
-            </section>
+            <LibraryWorkspace
+              coverage={resourceBankCoverage}
+              items={approvedResourceBankItems}
+            />
           </div>
         </main>
       </div>

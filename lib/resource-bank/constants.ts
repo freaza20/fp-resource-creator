@@ -1,8 +1,10 @@
 import type { ResourceType } from "@/types/resource";
 import type {
   LanguageSublevel,
+  LearningTrack,
   ProfessionalFamily,
   SkillFocus,
+  SupportLevel,
   VocationalLevel,
 } from "@/types/vocational";
 
@@ -56,6 +58,13 @@ export const languageSublevels = [
   "B1",
   "B1-high",
 ] satisfies LanguageSublevel[];
+
+export const learningTracks = [
+  "foundation",
+  "professional",
+] satisfies LearningTrack[];
+
+export const supportLevels = ["high", "medium", "low"] satisfies SupportLevel[];
 
 export const skillFocusOptions = [
   "reading",

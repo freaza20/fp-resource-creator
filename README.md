@@ -8,6 +8,8 @@ Teacher AI App ayuda a docentes de FP a crear y adaptar recursos de inglés cont
 
 La aplicación está pensada para generar materiales revisables: emails profesionales, role plays, listenings, worksheets, readings, exámenes breves, vocabulario técnico y actividades comunicativas conectadas con el mundo laboral.
 
+FP Básica se trata como una línea pedagógica propia: `foundation`. No se plantea como una versión rebajada de Grado Medio o Superior, sino como recursos de base, breves, muy guiados y orientados a recuperar confianza comunicativa dentro del Ámbito de Comunicación y Ciencias Sociales.
+
 ## Funcionalidades Actuales
 
 - Dashboard FP-first con grupos, recursos recientes y métricas.
@@ -17,6 +19,8 @@ La aplicación está pensada para generar materiales revisables: emails profesio
 - Arquitectura de IA simulada con prompts separados por tipo de recurso.
 - Estado cliente modular con Zustand.
 - Biblioteca FP inicial conectada a recursos aprobados del banco editorial.
+- Biblioteca avanzada con búsqueda, filtros, vista de detalle y cobertura editorial.
+- Soporte explícito para `foundation` en FP Básica y `professional` en Grado Medio/Superior.
 - Validación local del banco de recursos con `npm run validate:resource-bank`.
 - Modelo editorial con familias FP completas, escenarios reutilizables, plantillas y cobertura.
 
@@ -129,6 +133,11 @@ La Fase 8 introduce una capa editorial para evitar que el banco crezca como una 
 - `lib/resource-bank/coverage.ts`: cálculo de cobertura por familia, nivel y tipo.
 - `docs/editorial-model.md`: guía editorial del producto.
 
+El modelo distingue:
+
+- `foundation`: FP Básica, base comunicativa, apoyo alto y microtareas.
+- `professional`: Grado Medio y Superior, recursos profesionales por familia y situación.
+
 ## Roadmap Próximo
 
 ### Fase 6: Banco Editorial
@@ -149,7 +158,17 @@ La Fase 8 introduce una capa editorial para evitar que el banco crezca como una 
 - Cobertura del banco de recursos.
 - Documentación del modelo editorial.
 
-### Fase 9: Settings Y Configuración Docente
+### Fase 9: Biblioteca FP Avanzada
+
+- Filtros por familia profesional, subnivel, tipo y skill.
+- Filtros por línea pedagógica y nivel de apoyo.
+- Búsqueda por título, escenario, tags o contexto.
+- Vista de detalle de recurso.
+- Panel de cobertura editorial.
+- Acción preparada para adaptar recursos en fases posteriores.
+- Adaptación explícita de FP Básica como línea `foundation`.
+
+### Fase 10: Settings Y Configuración Docente
 
 - Preferencias del profesor.
 - Familias profesionales que imparte.
@@ -158,20 +177,20 @@ La Fase 8 introduce una capa editorial para evitar que el banco crezca como una 
 - Bancos propios de vocabulario y gramática.
 - Persistencia local inicial.
 
-### Fase 10: Biblioteca FP Avanzada
+### Fase 11: Generador Adaptativo
 
-- Filtros por familia profesional, ciclo, subnivel, skill y escenario.
-- Vista detallada de recurso.
-- Duplicado, adaptación y regeneración.
+- Usar recurso base como plantilla de adaptación.
+- Combinar preferencias docentes, grupo, banco editorial y prompt IA.
+- Duplicado, adaptación y regeneración controlada.
 
-### Fase 11: IA Real
+### Fase 12: IA Real
 
 - Route Handler seguro para generación.
 - Integración con proveedor IA barato.
 - Salida estructurada en JSON.
 - Límites de uso y control de coste.
 
-### Fase 12: Supabase Y Producto SaaS
+### Fase 13: Supabase Y Producto SaaS
 
 - Autenticación.
 - Persistencia de grupos, recursos y bancos.
@@ -181,6 +200,8 @@ La Fase 8 introduce una capa editorial para evitar que el banco crezca como una 
 ## Principios
 
 - FP-first.
+- Interfaz de la app en español.
+- Contenido didáctico en inglés, español o mixto según nivel y finalidad.
 - Ejemplos profesionales realistas.
 - IA como asistente, no como sustituto docente.
 - Revisión humana obligatoria.

@@ -17,7 +17,7 @@ const createDuplicatedResource = (
 ): TeachingResource => ({
   ...resource,
   id: `${resource.id}-copy-${Date.now()}`,
-  title: `${resource.title} (copy)`,
+  title: `${resource.title} (copia)`,
   createdAt: new Date().toISOString(),
 });
 

@@ -14,33 +14,33 @@ type MockFamilyContext = {
 const familyContexts: Partial<Record<ProfessionalFamily, MockFamilyContext>> = {
   "Administración y Gestión": {
     scenario:
-      "an administrative assistant preparing an order email for a supplier",
-    teacherFocus: "formal email structure, quantities and polite requests",
+      "un auxiliar administrativo prepara un email de pedido para un proveedor",
+    teacherFocus: "estructura formal de email, cantidades y peticiones educadas",
     defaultSkills: ["writing", "vocabulary", "mediation"],
   },
   "Comercio y Marketing": {
     scenario:
-      "a customer service assistant replying to a complaint about a delayed order",
-    teacherFocus: "apologies, solutions, follow-up and professional tone",
+      "un auxiliar de atención al cliente responde a una queja por un pedido retrasado",
+    teacherFocus: "disculpas, soluciones, seguimiento y tono profesional",
     defaultSkills: ["writing", "customer-service", "grammar"],
   },
   "Informática y Comunicaciones": {
     scenario:
-      "a helpdesk technician supporting a user with a password and network issue",
+      "un técnico de soporte ayuda a un usuario con una contraseña y una incidencia de red",
     teacherFocus:
-      "technical vocabulary, troubleshooting steps and professional interaction",
+      "vocabulario técnico, pasos de resolución e interacción profesional",
     defaultSkills: ["listening", "speaking", "vocabulary"],
   },
   "Hostelería y Turismo": {
     scenario:
-      "a hotel receptionist confirming a booking and explaining arrival details",
-    teacherFocus: "booking details, polite questions and guest information",
+      "un recepcionista de hotel confirma una reserva y explica detalles de llegada",
+    teacherFocus: "datos de reserva, preguntas educadas e información del huésped",
     defaultSkills: ["speaking", "writing", "customer-service"],
   },
   "Imagen Personal": {
     scenario:
-      "a salon assistant confirming an appointment and suggesting a service",
-    teacherFocus: "customer care, polite advice and service vocabulary",
+      "un auxiliar de peluquería confirma una cita y recomienda un servicio",
+    teacherFocus: "atención al cliente, consejos educados y vocabulario de servicios",
     defaultSkills: ["speaking", "customer-service", "vocabulary"],
   },
 };
@@ -48,10 +48,10 @@ const familyContexts: Partial<Record<ProfessionalFamily, MockFamilyContext>> = {
 const defaultFamily: ProfessionalFamily = "Administración y Gestión";
 
 const resourceTitles: Record<ResourceType, string> = {
-  reading: "Reading task",
-  listening: "Listening script",
-  worksheet: "Guided worksheet",
-  exam: "Assessment pack",
+  reading: "Actividad de lectura",
+  listening: "Guion de escucha",
+  worksheet: "Ficha guiada",
+  exam: "Prueba de evaluación",
 };
 
 const buildResourceContent = (
@@ -59,18 +59,18 @@ const buildResourceContent = (
   context: MockFamilyContext,
 ): string => {
   const vocabulary =
-    request.vocabulary?.words.join(", ") ?? "professional workplace vocabulary";
-  const grammar = request.grammar?.title ?? "teacher-selected grammar";
+    request.vocabulary?.words.join(", ") ?? "vocabulario profesional";
+  const grammar = request.grammar?.title ?? "gramática seleccionada por el docente";
   const support =
     request.options.studentSupport === "high"
-      ? "with sentence starters and model answers"
-      : "with concise instructions and a short final task";
+      ? "con inicios de frase y modelos de respuesta"
+      : "con instrucciones breves y una tarea final corta";
 
   const templates: Record<ResourceType, string> = {
-    reading: `Reading for ${request.level}: ${context.scenario}. The text practises ${grammar} and recycles ${vocabulary}. Include gist questions, detail questions and a short professional response ${support}.`,
-    listening: `Listening for ${request.level}: ${context.scenario}. Provide a natural script, pre-listening vocabulary, two gist questions and four detail questions. Focus on ${grammar} and ${context.teacherFocus}.`,
-    worksheet: `Worksheet for ${request.level}: ${context.scenario}. Start with a warm-up, add controlled practice for ${grammar}, recycle ${vocabulary}, and finish with a workplace task ${support}.`,
-    exam: `Exam for ${request.level}: ${context.scenario}. Include reading comprehension, vocabulary in context, grammar practice for ${grammar}, a writing prompt and brief correction criteria. Vocabulary focus: ${vocabulary}.`,
+    reading: `Lectura para ${request.level}: ${context.scenario}. El texto practica ${grammar} y reutiliza ${vocabulary}. Incluye preguntas globales, preguntas de detalle y una respuesta profesional breve ${support}.`,
+    listening: `Escucha para ${request.level}: ${context.scenario}. Incluye un guion natural, vocabulario previo, dos preguntas globales y cuatro preguntas de detalle. Enfoque: ${grammar} y ${context.teacherFocus}.`,
+    worksheet: `Ficha para ${request.level}: ${context.scenario}. Empieza con activación breve, añade práctica controlada de ${grammar}, reutiliza ${vocabulary} y termina con una tarea profesional ${support}.`,
+    exam: `Prueba para ${request.level}: ${context.scenario}. Incluye comprensión, vocabulario en contexto, práctica gramatical de ${grammar}, una tarea escrita y criterios breves de corrección. Vocabulario: ${vocabulary}.`,
   };
 
   return templates[request.resourceType];
@@ -92,6 +92,8 @@ export async function requestMockAIResource(
   const family = request.group?.professionalFamily ?? defaultFamily;
   const context = familyContexts[family] ?? familyContexts[defaultFamily];
   const generatedAt = new Date().toISOString();
+  const vocationalLevel = request.group?.vocationalLevel ?? "Grado Medio";
+  const learningTrack = vocationalLevel === "FP Básica" ? "foundation" : "professional";
 
   if (!context) {
     throw new Error("No se ha podido preparar el contexto mock de IA.");
@@ -105,7 +107,14 @@ export async function requestMockAIResource(
       title: createResourceTitle(request, context),
       type: request.resourceType,
       professionalFamily: family,
-      vocationalLevel: request.group?.vocationalLevel ?? "Grado Medio",
+      vocationalLevel,
+      learningTrack,
+      supportLevel:
+        learningTrack === "foundation"
+          ? "high"
+          : request.options.studentSupport === "high"
+            ? "high"
+            : "medium",
       languageLevel: request.level,
       scenario:
         request.group?.scenarios[0] ??

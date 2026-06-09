@@ -25,7 +25,7 @@ export function DashboardHero({
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <p className="text-sm font-medium text-emerald-700 dark:text-emerald-300">
-              Dashboard FP
+              Panel FP
             </p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl">
               Inglés profesional para ciclos de Formación Profesional.
@@ -38,7 +38,7 @@ export function DashboardHero({
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
             <Button disabled={isGenerating} onClick={onGenerateResource}>
               <SparkIcon />
-              {isGenerating ? "Generando..." : "Generar recurso demo"}
+              {isGenerating ? "Generando..." : "Generar recurso de prueba"}
             </Button>
             <Button variant="secondary">
               <DashboardIcon />

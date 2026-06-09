@@ -4,6 +4,8 @@
   "type": "exam",
   "professionalFamily": "Hostelería y Turismo",
   "vocationalLevel": "Grado Superior",
+  "learningTrack": "professional",
+  "supportLevel": "low",
   "languageLevel": "B1",
   "scenario": "Responder a una reserva de hotel con petición especial",
   "skillFocus": ["reading", "writing", "customer-service"],

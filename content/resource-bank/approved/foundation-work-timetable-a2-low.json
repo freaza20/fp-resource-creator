@@ -1,0 +1,43 @@
+{
+  "id": "foundation-work-timetable-a2-low",
+  "title": "Entender un horario sencillo de trabajo",
+  "type": "worksheet",
+  "professionalFamily": "Comercio y Marketing",
+  "vocationalLevel": "FP Básica",
+  "learningTrack": "foundation",
+  "supportLevel": "high",
+  "languageLevel": "A2-low",
+  "scenario": "Comprender turnos y horarios básicos en un entorno laboral",
+  "skillFocus": ["reading", "vocabulary"],
+  "estimatedMinutes": 20,
+  "content": {
+    "studentInstructions": "Mira el horario, reconoce días y horas, y completa frases muy cortas sobre tu turno.",
+    "teacherNotes": "Recurso foundation para alumnado con lagunas de base. Prioriza éxito rápido: lectura de tabla, días de la semana, horas y frases modelo.",
+    "sections": [
+      {
+        "title": "Horario",
+        "body": "Monday 9:00-13:00, Tuesday 16:00-20:00, Wednesday day off, Thursday 9:00-13:00, Friday 10:00-14:00.",
+        "tasks": [
+          "Circle the days you work in the morning.",
+          "Write: I work on Monday from 9 to 1.",
+          "Write: Wednesday is my day off."
+        ]
+      },
+      {
+        "title": "Sentence builder",
+        "body": "I work on ___ from ___ to ___. I start at ___. I finish at ___. My day off is ___."
+      }
+    ],
+    "answerKey": [
+      "Morning: Monday, Thursday, Friday.",
+      "Wednesday is the day off.",
+      "Accept short answers with correct day and time."
+    ]
+  },
+  "tags": ["foundation", "timetable", "workplace-basics", "days", "hours"],
+  "source": {
+    "generatedBy": "codex",
+    "reviewed": true,
+    "createdAt": "2026-06-09T10:00:00.000Z"
+  }
+}

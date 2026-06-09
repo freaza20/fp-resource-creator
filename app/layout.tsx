@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Teacher AI App",
+  title: "Aula FP IA",
   description:
     "SaaS educativo para profesores de inglés profesional en Formación Profesional.",
 };

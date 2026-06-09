@@ -33,23 +33,23 @@ const icons = {
 };
 
 const navigationItems: NavigationItem[] = [
-  { label: "Dashboard", href: "/", icon: "dashboard", section: "dashboard" },
-  { label: "Groups", href: "/#groups", icon: "groups", section: "groups" },
+  { label: "Panel", href: "/", icon: "dashboard", section: "dashboard" },
+  { label: "Grupos", href: "/#groups", icon: "groups", section: "groups" },
   {
-    label: "Resources",
+    label: "Recursos",
     href: "/#resources",
     icon: "resources",
     section: "resources",
   },
   {
-    label: "Generator",
+    label: "Generador",
     href: "/#generator",
     icon: "generator",
     section: "generator",
   },
-  { label: "Library", href: "/library", icon: "library", section: "library" },
+  { label: "Biblioteca", href: "/library", icon: "library", section: "library" },
   {
-    label: "Settings",
+    label: "Configuración",
     href: "/#settings",
     icon: "settings",
     section: "settings",
@@ -87,10 +87,10 @@ export function Sidebar({
           </div>
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-zinc-950 dark:text-zinc-50">
-              Teacher AI
+              Aula FP IA
             </p>
             <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">
-              English for FP
+              Inglés profesional
             </p>
           </div>
         </div>
@@ -143,7 +143,7 @@ export function Sidebar({
       <div className="mt-auto hidden border-t border-zinc-200 p-5 dark:border-zinc-800 lg:block">
         <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/60">
           <p className="text-sm font-medium text-zinc-950 dark:text-zinc-50">
-            FP-first
+            Enfoque FP
           </p>
           <p className="mt-1 text-xs leading-5 text-zinc-500 dark:text-zinc-400">
             Recursos por familia profesional, subnivel y situación laboral.

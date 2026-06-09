@@ -21,6 +21,8 @@ export function mapBankItemToResource(item: ResourceBankItem): TeachingResource 
     type: item.type,
     professionalFamily: item.professionalFamily,
     vocationalLevel: item.vocationalLevel,
+    learningTrack: item.learningTrack,
+    supportLevel: item.supportLevel,
     languageLevel: item.languageLevel,
     scenario: item.scenario,
     skillFocus: item.skillFocus,

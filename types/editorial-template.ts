@@ -1,8 +1,10 @@
 import type { ResourceType } from "./resource";
 import type {
   LanguageSublevel,
+  LearningTrack,
   ProfessionalFamily,
   SkillFocus,
+  SupportLevel,
 } from "./vocational";
 
 export type EditorialTemplateStep = {
@@ -17,6 +19,8 @@ export type EditorialTemplate = {
   scenarioId: string;
   supportedFamilies: ProfessionalFamily[];
   supportedLevels: LanguageSublevel[];
+  learningTrack: LearningTrack;
+  defaultSupportLevel: SupportLevel;
   resourceTypes: ResourceType[];
   skillFocus: SkillFocus[];
   communicativeGoal: string;

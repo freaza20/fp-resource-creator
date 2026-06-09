@@ -9,16 +9,63 @@ import type { ResourceBankItem } from "@/types/resource-bank";
 
 const resourceTypeLabels: Record<ResourceBankItem["type"], string> = {
   exam: "Examen",
-  listening: "Listening",
-  reading: "Reading",
-  worksheet: "Worksheet",
+  listening: "Escucha",
+  reading: "Lectura",
+  worksheet: "Ficha",
 };
 
-export function ResourceBankCard({ item }: { item: ResourceBankItem }) {
+const learningTrackLabels: Record<ResourceBankItem["learningTrack"], string> = {
+  foundation: "Base FP Básica",
+  professional: "Profesional",
+};
+
+const skillLabels: Record<ResourceBankItem["skillFocus"][number], string> = {
+  "customer-service": "Atención al cliente",
+  grammar: "Gramática",
+  listening: "Escucha",
+  mediation: "Mediación",
+  reading: "Lectura",
+  speaking: "Oral",
+  vocabulary: "Vocabulario",
+  writing: "Escritura",
+};
+
+const joinClasses = (...classes: Array<string | false | undefined>): string =>
+  classes.filter(Boolean).join(" ");
+
+export function ResourceBankCard({
+  isSelected = false,
+  item,
+  onSelect,
+}: {
+  isSelected?: boolean;
+  item: ResourceBankItem;
+  onSelect?: (item: ResourceBankItem) => void;
+}) {
   const firstSection = item.content.sections[0];
 
   return (
-    <Card className="flex h-full flex-col">
+    <Card
+      className={joinClasses(
+        "flex h-full flex-col transition-colors",
+        onSelect &&
+          "cursor-pointer hover:border-zinc-300 hover:bg-zinc-50/70 dark:hover:border-zinc-700 dark:hover:bg-zinc-900/40",
+        isSelected && "border-zinc-950 dark:border-zinc-50",
+      )}
+      onClick={() => onSelect?.(item)}
+      role={onSelect ? "button" : undefined}
+      tabIndex={onSelect ? 0 : undefined}
+      onKeyDown={(event) => {
+        if (!onSelect) {
+          return;
+        }
+
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onSelect(item);
+        }
+      }}
+    >
       <CardHeader>
         <div className="flex flex-wrap items-center gap-2">
           <span className="rounded-md border border-zinc-200 px-2 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-800 dark:text-zinc-300">
@@ -26,6 +73,9 @@ export function ResourceBankCard({ item }: { item: ResourceBankItem }) {
           </span>
           <span className="rounded-md bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
             {item.languageLevel}
+          </span>
+          <span className="rounded-md bg-sky-50 px-2 py-1 text-xs font-medium text-sky-700 dark:bg-sky-950/50 dark:text-sky-300">
+            {learningTrackLabels[item.learningTrack]}
           </span>
           <span className="rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
             Revisado
@@ -63,7 +113,7 @@ export function ResourceBankCard({ item }: { item: ResourceBankItem }) {
               className="rounded-md bg-zinc-50 px-2 py-1 text-xs text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400"
               key={skill}
             >
-              {skill}
+              {skillLabels[skill]}
             </span>
           ))}
         </div>

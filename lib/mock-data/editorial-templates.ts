@@ -13,6 +13,8 @@ export const editorialTemplates = [
       "Transporte y Mantenimiento de Vehículos",
     ],
     supportedLevels: ["A2-high", "B1-low", "B1", "B1-high"],
+    learningTrack: "professional",
+    defaultSupportLevel: "medium",
     resourceTypes: ["reading", "worksheet", "exam"],
     skillFocus: ["reading", "writing", "customer-service"],
     communicativeGoal:
@@ -54,6 +56,8 @@ export const editorialTemplates = [
       "Agraria",
     ],
     supportedLevels: ["A2-low", "A2", "A2-high", "B1-low"],
+    learningTrack: "professional",
+    defaultSupportLevel: "medium",
     resourceTypes: ["worksheet", "exam"],
     skillFocus: ["writing", "vocabulary", "mediation"],
     communicativeGoal:
@@ -95,12 +99,14 @@ export const editorialTemplates = [
       "Fabricación Mecánica",
     ],
     supportedLevels: ["A2", "A2-high", "B1-low", "B1"],
+    learningTrack: "professional",
+    defaultSupportLevel: "medium",
     resourceTypes: ["listening", "worksheet", "exam"],
     skillFocus: ["listening", "speaking", "vocabulary"],
     communicativeGoal:
       "Describir una avería, hacer preguntas básicas y explicar una acción de seguimiento.",
     teacherUseCase:
-      "Funciona bien como role play de soporte técnico o listening con ficha de incidencia.",
+      "Funciona bien como dramatización de soporte técnico o escucha con ficha de incidencia.",
     adaptationNotes: [
       "Incluir piezas, síntomas y acciones propias del sector.",
       "En niveles A2, limitar las instrucciones a pasos cortos.",
@@ -136,6 +142,8 @@ export const editorialTemplates = [
       "Textil, Confección y Piel",
     ],
     supportedLevels: ["A2-low", "A2", "A2-high"],
+    learningTrack: "professional",
+    defaultSupportLevel: "medium",
     resourceTypes: ["listening", "worksheet"],
     skillFocus: ["speaking", "writing", "customer-service"],
     communicativeGoal:
@@ -179,6 +187,8 @@ export const editorialTemplates = [
       "Seguridad y Medio Ambiente",
     ],
     supportedLevels: ["A2", "A2-high", "B1-low"],
+    learningTrack: "professional",
+    defaultSupportLevel: "medium",
     resourceTypes: ["reading", "listening", "worksheet"],
     skillFocus: ["reading", "listening", "vocabulary"],
     communicativeGoal:
@@ -221,6 +231,8 @@ export const editorialTemplates = [
       "Transporte y Mantenimiento de Vehículos",
     ],
     supportedLevels: ["A2-high", "B1-low", "B1", "B1-high"],
+    learningTrack: "professional",
+    defaultSupportLevel: "medium",
     resourceTypes: ["reading", "worksheet", "exam"],
     skillFocus: ["speaking", "writing", "vocabulary"],
     communicativeGoal:
@@ -247,6 +259,93 @@ export const editorialTemplates = [
         title: "Explicación final",
         purpose: "Producir una explicación adaptada al interlocutor.",
         suggestedTask: "Grabar o representar una explicación breve.",
+      },
+    ],
+  },
+  {
+    id: "template-foundation-workplace-basics",
+    title: "Base FP Básica: supervivencia comunicativa laboral",
+    scenarioId: "service-explanation",
+    supportedFamilies: [
+      "Administración y Gestión",
+      "Comercio y Marketing",
+      "Imagen Personal",
+      "Instalación y Mantenimiento",
+      "Transporte y Mantenimiento de Vehículos",
+    ],
+    supportedLevels: ["A2-low", "A2"],
+    learningTrack: "foundation",
+    defaultSupportLevel: "high",
+    resourceTypes: ["worksheet", "listening"],
+    skillFocus: ["speaking", "vocabulary", "listening"],
+    communicativeGoal:
+      "Practicar frases básicas para pedir ayuda, confirmar instrucciones y completar rutinas laborales simples.",
+    teacherUseCase:
+      "Diseñada para FP Básica dentro del Ámbito de Comunicación y Ciencias Sociales, con alumnado que necesita reconstruir bases de inglés.",
+    adaptationNotes: [
+      "Limitar cada recurso a una función comunicativa concreta.",
+      "Usar frases modelo, repetición y cambios mínimos.",
+      "Evitar producción larga; priorizar respuesta oral o escrita de una frase.",
+    ],
+    baseStructure: [
+      {
+        title: "Frases de supervivencia",
+        purpose: "Dar lenguaje inmediatamente utilizable.",
+        suggestedTask: "Relacionar frase con significado y repetir con apoyo visual.",
+      },
+      {
+        title: "Cambio mínimo",
+        purpose: "Practicar una estructura con vocabulario profesional.",
+        suggestedTask: "Sustituir una palabra: tool, appointment, product, customer.",
+      },
+      {
+        title: "Mini interacción",
+        purpose: "Generar éxito rápido en expresión oral.",
+        suggestedTask: "Dramatización de 2-4 turnos con tarjeta A/B.",
+      },
+    ],
+  },
+  {
+    id: "template-foundation-functional-reading",
+    title: "Base FP Básica: lectura funcional breve",
+    scenarioId: "safety-instructions",
+    supportedFamilies: [
+      "Actividades Físicas y Deportivas",
+      "Comercio y Marketing",
+      "Electricidad y Electrónica",
+      "Hostelería y Turismo",
+      "Imagen Personal",
+      "Instalación y Mantenimiento",
+    ],
+    supportedLevels: ["A2-low", "A2"],
+    learningTrack: "foundation",
+    defaultSupportLevel: "high",
+    resourceTypes: ["reading", "worksheet"],
+    skillFocus: ["reading", "vocabulary"],
+    communicativeGoal:
+      "Entender información laboral muy breve: horarios, señales, instrucciones, listas o mensajes.",
+    teacherUseCase:
+      "Útil para sesiones de 15-25 minutos con alumnado que necesita recuperar confianza lectora.",
+    adaptationNotes: [
+      "Usar tablas, listas, señales o mensajes cortos.",
+      "Incluir una única estrategia: localizar dato, unir imagen-palabra o completar frase.",
+      "Cerrar con una tarea observable y pequeña.",
+    ],
+    baseStructure: [
+      {
+        title: "Input breve",
+        purpose: "Presentar un texto funcional de baja carga.",
+        suggestedTask: "Localizar días, horas, objetos, lugares o acciones.",
+      },
+      {
+        title: "Apoyo visual o tabla",
+        purpose: "Reducir carga lingüística y aumentar comprensión.",
+        suggestedTask: "Completar huecos con opciones dadas.",
+      },
+      {
+        title: "Salida mínima",
+        purpose: "Consolidar con una frase útil.",
+        suggestedTask: "Escribir o decir una frase modelo adaptada.",
       },
     ],
   },

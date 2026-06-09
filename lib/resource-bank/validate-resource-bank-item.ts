@@ -1,8 +1,10 @@
 import {
   languageSublevels,
+  learningTracks,
   professionalFamilies,
   resourceTypes,
   skillFocusOptions,
+  supportLevels,
   vocationalLevels,
 } from "@/lib/resource-bank/constants";
 import type {
@@ -76,6 +78,18 @@ export function validateResourceBankItem(
 
   if (!vocationalLevels.includes(item.vocationalLevel as never)) {
     errors.push("vocationalLevel no coincide con un nivel de FP permitido.");
+  }
+
+  if (!learningTracks.includes(item.learningTrack as never)) {
+    errors.push("learningTrack debe ser foundation o professional.");
+  }
+
+  if (!supportLevels.includes(item.supportLevel as never)) {
+    errors.push("supportLevel debe ser high, medium o low.");
+  }
+
+  if (item.vocationalLevel === "FP Básica" && item.learningTrack !== "foundation") {
+    errors.push("Los recursos de FP Básica deben usar learningTrack foundation.");
   }
 
   if (!languageSublevels.includes(item.languageLevel as never)) {

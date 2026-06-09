@@ -35,6 +35,8 @@ Los recursos aprobados aparecen en la pantalla `/library` de la aplicación.
 - No modificar `lib/mock-data/resources.ts` directamente.
 - No usar textos de relleno.
 - Cada recurso debe estar contextualizado por familia profesional, ciclo, subnivel, escenario y skill.
+- Cada recurso debe declarar `learningTrack` y `supportLevel`.
+- Los recursos de FP Básica deben usar `learningTrack: "foundation"` y normalmente `supportLevel: "high"`.
 - Siempre que sea posible, partir de una plantilla de `lib/mock-data/editorial-templates.ts`.
 - `source.reviewed` debe ser `false` en recursos pendientes.
 - Los IDs deben ser estables, en kebab-case y descriptivos.
@@ -74,6 +76,17 @@ Los recursos aprobados aparecen en la pantalla `/library` de la aplicación.
 - `Grado Medio`
 - `Grado Superior`
 
+## Líneas Pedagógicas
+
+- `foundation`: FP Básica, recuperación de bases, tareas breves, alto andamiaje.
+- `professional`: Grado Medio y Grado Superior, inglés profesional contextualizado.
+
+## Niveles De Apoyo
+
+- `high`: frases modelo, opciones, tareas cortas y producción muy guiada.
+- `medium`: apoyo parcial, modelos y producción controlada.
+- `low`: mayor autonomía y producción más abierta.
+
 ## Subniveles Permitidos
 
 - `A2-low`
@@ -110,6 +123,8 @@ Los recursos aprobados aparecen en la pantalla `/library` de la aplicación.
   "type": "worksheet",
   "professionalFamily": "Administración y Gestión",
   "vocationalLevel": "FP Básica",
+  "learningTrack": "foundation",
+  "supportLevel": "high",
   "languageLevel": "A2-low",
   "scenario": "supplier-order-email",
   "skillFocus": ["writing", "vocabulary"],
@@ -149,6 +164,7 @@ Los recursos aprobados aparecen en la pantalla `/library` de la aplicación.
 
 - El recurso representa una situación profesional real.
 - El nivel lingüístico corresponde al subnivel indicado.
+- Si es FP Básica, el recurso es foundation, breve y con apoyo alto.
 - Las instrucciones para alumnado son claras.
 - Las notas docentes ayudan a usar el recurso en clase.
 - Las tareas son accionables.

@@ -1,0 +1,43 @@
+{
+  "id": "foundation-ask-for-help-a2-low",
+  "title": "Pedir ayuda en el trabajo",
+  "type": "worksheet",
+  "professionalFamily": "Instalación y Mantenimiento",
+  "vocationalLevel": "FP Básica",
+  "learningTrack": "foundation",
+  "supportLevel": "high",
+  "languageLevel": "A2-low",
+  "scenario": "Pedir ayuda con una tarea o herramienta en el puesto de trabajo",
+  "skillFocus": ["speaking", "vocabulary"],
+  "estimatedMinutes": 20,
+  "content": {
+    "studentInstructions": "Practica frases muy cortas para pedir ayuda de forma educada cuando no entiendes una tarea.",
+    "teacherNotes": "Pensado para alumnado de FP Básica con baja confianza oral. Usar repetición coral, tarjetas A/B y cambios mínimos de vocabulario.",
+    "sections": [
+      {
+        "title": "Useful phrases",
+        "body": "Can you help me, please? I don't understand. Can you repeat, please? Where is the tool? Is this correct?",
+        "tasks": [
+          "Match each phrase with its meaning.",
+          "Repeat the phrases with a partner.",
+          "Change tool for screwdriver, cable or gloves."
+        ]
+      },
+      {
+        "title": "Mini dramatización",
+        "body": "Alumno A: necesitas ayuda. Alumno B: eres un compañero. Usad dos frases útiles y una palabra de herramientas."
+      }
+    ],
+    "answerKey": [
+      "Can you help me, please? = pedir ayuda.",
+      "Can you repeat, please? = pedir que repitan.",
+      "Where is the tool? = preguntar dónde está una herramienta."
+    ]
+  },
+  "tags": ["foundation", "workplace-basics", "asking-for-help", "tools", "speaking"],
+  "source": {
+    "generatedBy": "codex",
+    "reviewed": true,
+    "createdAt": "2026-06-09T10:05:00.000Z"
+  }
+}
