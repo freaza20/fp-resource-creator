@@ -1,0 +1,42 @@
+{
+  "id": "admin-supplier-order-email-a2-low",
+  "title": "Email sencillo para pedir material de oficina",
+  "type": "worksheet",
+  "professionalFamily": "Administración y Gestión",
+  "vocationalLevel": "FP Básica",
+  "languageLevel": "A2-low",
+  "scenario": "Realizar un pedido básico a un proveedor",
+  "skillFocus": ["writing", "vocabulary"],
+  "estimatedMinutes": 35,
+  "content": {
+    "studentInstructions": "Lee la situación profesional y completa un email breve para pedir material de oficina a un proveedor habitual.",
+    "teacherNotes": "Actividad útil para practicar saludos formales, cantidades, objetos de oficina y cierre de email. Se puede hacer primero con plantilla y después sin apoyo.",
+    "sections": [
+      {
+        "title": "Situación profesional",
+        "body": "Trabajas como auxiliar administrativo en una academia. La coordinadora te pide enviar un email a OfficePlus para solicitar 20 carpetas azules, 10 paquetes de folios A4 y 5 cajas de bolígrafos negros.",
+        "tasks": [
+          "Completa el asunto del email.",
+          "Escribe un saludo formal.",
+          "Pide los tres productos con cantidades correctas.",
+          "Pregunta por la fecha de entrega."
+        ]
+      },
+      {
+        "title": "Banco de frases",
+        "body": "Dear Sir or Madam, We would like to order..., Could you please confirm the delivery date?, Thank you for your help, Kind regards."
+      }
+    ],
+    "answerKey": [
+      "Subject: Order of office supplies",
+      "We would like to order 20 blue folders, 10 packs of A4 paper and 5 boxes of black pens.",
+      "Could you please confirm the delivery date?"
+    ]
+  },
+  "tags": ["email", "orders", "office-supplies", "supplier"],
+  "source": {
+    "generatedBy": "codex",
+    "reviewed": true,
+    "createdAt": "2026-05-27T17:20:00.000Z"
+  }
+}

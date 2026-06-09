@@ -1,0 +1,41 @@
+{
+  "id": "commerce-customer-complaint-b1-low",
+  "title": "Responder a una queja de cliente por un pedido incompleto",
+  "type": "reading",
+  "professionalFamily": "Comercio y Marketing",
+  "vocationalLevel": "Grado Medio",
+  "languageLevel": "B1-low",
+  "scenario": "Gestionar una queja de cliente en una tienda online",
+  "skillFocus": ["reading", "customer-service", "vocabulary"],
+  "estimatedMinutes": 40,
+  "content": {
+    "studentInstructions": "Lee el email de queja y la respuesta del departamento de atención al cliente. Después responde a las preguntas y mejora dos frases para que suenen más profesionales.",
+    "teacherNotes": "Recurso para trabajar tono profesional, disculpas, soluciones y vocabulario de comercio electrónico.",
+    "sections": [
+      {
+        "title": "Customer complaint",
+        "body": "Hello, I received my order this morning, but one item is missing. I ordered two wireless keyboards and a laptop stand, but the laptop stand was not in the box. I need it for a presentation next Monday. Can you solve this as soon as possible?",
+        "tasks": [
+          "Identify the main problem.",
+          "Find the deadline mentioned by the customer.",
+          "Underline two phrases that show urgency."
+        ]
+      },
+      {
+        "title": "Customer service reply",
+        "body": "Dear Ms Carter, thank you for contacting us. We are sorry for the inconvenience. We have checked your order and the laptop stand was not included due to a warehouse error. We will send it today by express delivery at no extra cost. You will receive a tracking number this afternoon."
+      }
+    ],
+    "answerKey": [
+      "The laptop stand is missing.",
+      "The customer needs it before next Monday.",
+      "Useful professional phrases: We are sorry for the inconvenience; at no extra cost; tracking number."
+    ]
+  },
+  "tags": ["complaints", "customer-service", "ecommerce", "delivery"],
+  "source": {
+    "generatedBy": "codex",
+    "reviewed": true,
+    "createdAt": "2026-05-27T17:22:00.000Z"
+  }
+}

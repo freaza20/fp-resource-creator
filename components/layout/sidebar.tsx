@@ -2,7 +2,13 @@ type NavigationItem = {
   label: string;
   href: string;
   icon: keyof typeof icons;
-  active?: boolean;
+  section:
+    | "dashboard"
+    | "groups"
+    | "resources"
+    | "generator"
+    | "library"
+    | "settings";
 };
 
 const icons = {
@@ -27,12 +33,27 @@ const icons = {
 };
 
 const navigationItems: NavigationItem[] = [
-  { label: "Dashboard", href: "#dashboard", icon: "dashboard", active: true },
-  { label: "Groups", href: "#groups", icon: "groups" },
-  { label: "Resources", href: "#resources", icon: "resources" },
-  { label: "Generator", href: "#generator", icon: "generator" },
-  { label: "Library", href: "#library", icon: "library" },
-  { label: "Settings", href: "#settings", icon: "settings" },
+  { label: "Dashboard", href: "/", icon: "dashboard", section: "dashboard" },
+  { label: "Groups", href: "/#groups", icon: "groups", section: "groups" },
+  {
+    label: "Resources",
+    href: "/#resources",
+    icon: "resources",
+    section: "resources",
+  },
+  {
+    label: "Generator",
+    href: "/#generator",
+    icon: "generator",
+    section: "generator",
+  },
+  { label: "Library", href: "/library", icon: "library", section: "library" },
+  {
+    label: "Settings",
+    href: "/#settings",
+    icon: "settings",
+    section: "settings",
+  },
 ];
 
 function SidebarIcon({ name }: { name: NavigationItem["icon"] }) {
@@ -52,7 +73,11 @@ function SidebarIcon({ name }: { name: NavigationItem["icon"] }) {
   );
 }
 
-export function Sidebar() {
+export function Sidebar({
+  activeSection = "dashboard",
+}: {
+  activeSection?: NavigationItem["section"];
+}) {
   return (
     <aside className="flex border-zinc-200 bg-white/80 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/80 lg:min-h-screen lg:w-72 lg:flex-col lg:border-r">
       <div className="flex w-full items-center justify-between gap-4 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800 lg:flex-col lg:items-stretch lg:justify-start lg:border-b-0 lg:px-5 lg:py-5">
@@ -74,7 +99,7 @@ export function Sidebar() {
           {navigationItems.map((item) => (
             <a
               className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                item.active
+                item.section === activeSection
                   ? "bg-zinc-100 text-zinc-950 dark:bg-zinc-900 dark:text-zinc-50"
                   : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-50"
               }`}
@@ -91,21 +116,27 @@ export function Sidebar() {
           className="flex gap-1 overflow-x-auto lg:hidden"
           aria-label="Principal móvil"
         >
-          {navigationItems.slice(0, 4).map((item) => (
-            <a
-              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-md transition-colors ${
-                item.active
-                  ? "bg-zinc-100 text-zinc-950 dark:bg-zinc-900 dark:text-zinc-50"
-                  : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-50"
-              }`}
-              href={item.href}
-              key={item.label}
-              title={item.label}
-            >
-              <SidebarIcon name={item.icon} />
-              <span className="sr-only">{item.label}</span>
-            </a>
-          ))}
+          {navigationItems
+            .filter((item) =>
+              ["dashboard", "resources", "generator", "library"].includes(
+                item.section,
+              ),
+            )
+            .map((item) => (
+              <a
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-md transition-colors ${
+                  item.section === activeSection
+                    ? "bg-zinc-100 text-zinc-950 dark:bg-zinc-900 dark:text-zinc-50"
+                    : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-50"
+                }`}
+                href={item.href}
+                key={item.label}
+                title={item.label}
+              >
+                <SidebarIcon name={item.icon} />
+                <span className="sr-only">{item.label}</span>
+              </a>
+            ))}
         </nav>
       </div>
 

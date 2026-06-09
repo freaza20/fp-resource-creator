@@ -11,7 +11,7 @@ type MockFamilyContext = {
   defaultSkills: SkillFocus[];
 };
 
-const familyContexts: Record<ProfessionalFamily, MockFamilyContext> = {
+const familyContexts: Partial<Record<ProfessionalFamily, MockFamilyContext>> = {
   "Administración y Gestión": {
     scenario:
       "an administrative assistant preparing an order email for a supplier",
@@ -90,8 +90,12 @@ export async function requestMockAIResource(
   prompt: string,
 ): Promise<AIResourceResponse> {
   const family = request.group?.professionalFamily ?? defaultFamily;
-  const context = familyContexts[family];
+  const context = familyContexts[family] ?? familyContexts[defaultFamily];
   const generatedAt = new Date().toISOString();
+
+  if (!context) {
+    throw new Error("No se ha podido preparar el contexto mock de IA.");
+  }
 
   await new Promise((resolve) => setTimeout(resolve, 250));
 

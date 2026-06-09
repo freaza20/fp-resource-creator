@@ -1,0 +1,43 @@
+{
+  "id": "hairdressing-appointment-reply-a2",
+  "title": "Responder a un cliente que pide cita en una peluquería",
+  "type": "worksheet",
+  "professionalFamily": "Imagen Personal",
+  "vocationalLevel": "FP Básica",
+  "languageLevel": "A2",
+  "scenario": "Confirmar una cita de peluquería por mensaje",
+  "skillFocus": ["writing", "customer-service", "vocabulary"],
+  "estimatedMinutes": 30,
+  "content": {
+    "studentInstructions": "Escribe una respuesta breve para confirmar o proponer una cita en una peluquería. Usa la información de la agenda.",
+    "teacherNotes": "Actividad pensada para practicar horarios, servicios, fórmulas de cortesía y confirmación de citas.",
+    "sections": [
+      {
+        "title": "Mensaje del cliente",
+        "body": "Hello, I would like to book an appointment for a haircut and colour this Friday afternoon. Do you have any availability?",
+        "tasks": [
+          "Responde con un saludo profesional.",
+          "Propón una hora disponible.",
+          "Confirma el servicio solicitado.",
+          "Cierra el mensaje de forma amable."
+        ]
+      },
+      {
+        "title": "Agenda",
+        "body": "Friday: 16:00 unavailable, 17:30 available, 18:30 available. Haircut and colour: approximately 90 minutes."
+      }
+    ],
+    "answerKey": [
+      "Hello, thank you for your message.",
+      "We have availability on Friday at 17:30.",
+      "We can book you for a haircut and colour.",
+      "Please confirm if this time is suitable for you."
+    ]
+  },
+  "tags": ["appointments", "hairdressing", "customer-service", "messages"],
+  "source": {
+    "generatedBy": "codex",
+    "reviewed": true,
+    "createdAt": "2026-05-27T17:26:00.000Z"
+  }
+}

@@ -34,12 +34,18 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 
 - `types/`: contratos transversales de dominio, FP, recursos, vocabulario y gramática.
 - `lib/mock-data/`: datos semilla realistas para familias profesionales, escenarios, grupos, vocabulario, gramática y recursos.
+- `content/resource-bank/`: entrada editorial para recursos generados por tareas separadas de Codex.
+- `docs/resource-bank-guidelines.md`: guía obligatoria para generar recursos compatibles con el banco.
+- `docs/editorial-model.md`: guía del modelo editorial, criterios de calidad y priorización.
+- `lib/resource-bank/`: validación y transformación de recursos estructurados.
 - `lib/ai/`: frontera de IA con tipos, prompts, orquestador y proveedor mock.
 - `store/`: estado cliente modular con Zustand.
 - `hooks/`: hooks de aplicación, como generación de recursos.
 - `components/ui/`: primitivas reutilizables.
 - `components/dashboard/`: piezas del dashboard FP.
+- `components/library/`: componentes de la biblioteca FP y del banco de recursos.
 - `components/layout/`: estructura de navegación.
+- `scripts/`: utilidades locales de validación y mantenimiento.
 - `app/`: rutas App Router y composición de página.
 
 ## Reglas De Dominio
@@ -47,9 +53,16 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - El producto es FP-first. No introducir ESO, Bachillerato ni inglés general salvo como contenido auxiliar claramente justificado.
 - Toda generación debe estar contextualizada por familia profesional, ciclo, subnivel, escenario y skill.
 - Los recursos deben poder clasificarse por familia, nivel, escenario, tipo y foco comunicativo.
+- Los escenarios profesionales deben ser reutilizables entre familias cuando tenga sentido.
+- Las plantillas editoriales viven en `lib/mock-data/editorial-templates.ts` y deben orientar futuras generaciones IA.
 - Los prompts deben vivir en `lib/ai/prompts/`, separados por tipo de recurso.
 - La UI no debe llamar directamente a proveedores IA. Debe pasar por hooks y servicios de `lib/ai/`.
 - No conectar OpenAI, Supabase, autenticación, pagos ni PDF sin una fase explícita.
+- Las tareas de Codex dedicadas a generar recursos deben escribir solo en `content/resource-bank/pending/` y seguir `docs/resource-bank-guidelines.md`.
+- Los recursos pendientes no deben importarse a la app sin revisión humana.
+- Los recursos aprobados se cargan desde `content/resource-bank/approved/` mediante `lib/resource-bank/approved-resource-bank.ts`.
+- Ejecutar `npm run validate:resource-bank` tras añadir o mover recursos del banco.
+- Al ampliar el banco, revisar la cobertura con `lib/resource-bank/coverage.ts` para priorizar huecos reales.
 
 ## Convenciones De Código
 
@@ -79,5 +92,8 @@ La interfaz debe sentirse como una herramienta SaaS profesional para docentes:
 - Respeta cambios existentes del usuario.
 - Mantén la separación entre datos, estado, UI, IA y futura persistencia.
 - Si añades una familia profesional, crea también escenarios, vocabulario y recursos coherentes.
+- Si añades un escenario transversal, indica familias aplicables, niveles sugeridos y tipos de recurso.
+- Si añades una plantilla editorial, vincúlala a un escenario existente.
 - Si añades un tipo de recurso, actualiza tipos, prompts, mock service, UI y documentación.
+- Si generas recursos para el banco, no modifiques UI ni stores; crea JSON compatible con `types/resource-bank.ts`.
 - Prioriza utilidad docente real frente a demostraciones superficiales.

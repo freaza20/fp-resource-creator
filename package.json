@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "validate:resource-bank": "node scripts/validate-resource-bank.mjs"
   },
   "dependencies": {
     "next": "16.2.6",

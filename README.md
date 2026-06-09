@@ -16,14 +16,19 @@ La aplicación está pensada para generar materiales revisables: emails profesio
 - Mock data de grupos, vocabulario, gramática, escenarios y recursos.
 - Arquitectura de IA simulada con prompts separados por tipo de recurso.
 - Estado cliente modular con Zustand.
+- Biblioteca FP inicial conectada a recursos aprobados del banco editorial.
+- Validación local del banco de recursos con `npm run validate:resource-bank`.
+- Modelo editorial con familias FP completas, escenarios reutilizables, plantillas y cobertura.
 
-## Familias Profesionales Iniciales
+## Familias Profesionales
 
-- Administración y Gestión.
-- Comercio y Marketing.
-- Informática y Comunicaciones.
-- Hostelería y Turismo.
-- Imagen Personal.
+La app contempla el catálogo base de familias profesionales de ciclos de FP en España. Cada familia se clasifica con una prioridad editorial:
+
+- `core`: familias prioritarias para el banco inicial.
+- `secondary`: familias relevantes para expansión progresiva.
+- `specialized`: familias de cobertura más específica.
+
+El catálogo vive en `lib/mock-data/professional-families.ts`.
 
 ## Ejemplos De Situaciones Profesionales
 
@@ -74,20 +79,77 @@ npm run build
 app/
 components/
   dashboard/
+  library/
   layout/
   ui/
 hooks/
+content/
+  resource-bank/
+    pending/
+    approved/
+    rejected/
+docs/
 lib/
   ai/
     prompts/
+  resource-bank/
   mock-data/
+scripts/
 store/
 types/
 ```
 
+## Banco De Recursos
+
+La app incluye un pipeline editorial para generar recursos desde otras tareas de Codex sin tocar la aplicación principal.
+
+- `content/resource-bank/pending/`: recursos generados pendientes de revisión.
+- `content/resource-bank/approved/`: recursos revisados y listos para importar.
+- `content/resource-bank/rejected/`: recursos descartados o incompletos.
+
+El contrato de datos está en `types/resource-bank.ts`. La validación vive en `lib/resource-bank/validate-resource-bank-item.ts` y el mapeo hacia recursos ligeros de la app en `lib/resource-bank/map-bank-item-to-resource.ts`.
+
+La guía operativa está en `docs/resource-bank-guidelines.md`.
+
+Para validar los recursos locales del banco:
+
+```bash
+npm run validate:resource-bank
+```
+
+Los recursos aprobados se cargan desde `lib/resource-bank/approved-resource-bank.ts` y se muestran en `/library`.
+
+## Modelo Editorial
+
+La Fase 8 introduce una capa editorial para evitar que el banco crezca como una colección desordenada de recursos.
+
+- `types/editorial-template.ts`: contratos para plantillas editoriales.
+- `lib/mock-data/professional-scenarios.ts`: situaciones profesionales reutilizables.
+- `lib/mock-data/editorial-templates.ts`: moldes pedagógicos por escenario.
+- `lib/resource-bank/coverage.ts`: cálculo de cobertura por familia, nivel y tipo.
+- `docs/editorial-model.md`: guía editorial del producto.
+
 ## Roadmap Próximo
 
-### Fase 6: Settings Y Configuración Docente
+### Fase 6: Banco Editorial
+
+- Pipeline editorial del banco de recursos.
+
+### Fase 7: Biblioteca FP
+
+- Recursos aprobados de ejemplo.
+- Script de validación del banco.
+- Pantalla `/library` conectada al banco aprobado.
+
+### Fase 8: Modelo Editorial FP
+
+- Catálogo completo de familias profesionales.
+- Escenarios transversales adaptables por familia.
+- Plantillas editoriales reutilizables.
+- Cobertura del banco de recursos.
+- Documentación del modelo editorial.
+
+### Fase 9: Settings Y Configuración Docente
 
 - Preferencias del profesor.
 - Familias profesionales que imparte.
@@ -96,20 +158,20 @@ types/
 - Bancos propios de vocabulario y gramática.
 - Persistencia local inicial.
 
-### Fase 7: Biblioteca FP
+### Fase 10: Biblioteca FP Avanzada
 
 - Filtros por familia profesional, ciclo, subnivel, skill y escenario.
 - Vista detallada de recurso.
 - Duplicado, adaptación y regeneración.
 
-### Fase 8: IA Real
+### Fase 11: IA Real
 
 - Route Handler seguro para generación.
 - Integración con proveedor IA barato.
 - Salida estructurada en JSON.
 - Límites de uso y control de coste.
 
-### Fase 9: Supabase Y Producto SaaS
+### Fase 12: Supabase Y Producto SaaS
 
 - Autenticación.
 - Persistencia de grupos, recursos y bancos.

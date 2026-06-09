@@ -1,0 +1,43 @@
+{
+  "id": "hospitality-booking-confirmation-b1",
+  "title": "Confirmación de reserva y petición especial",
+  "type": "exam",
+  "professionalFamily": "Hostelería y Turismo",
+  "vocationalLevel": "Grado Superior",
+  "languageLevel": "B1",
+  "scenario": "Responder a una reserva de hotel con petición especial",
+  "skillFocus": ["reading", "writing", "customer-service"],
+  "estimatedMinutes": 50,
+  "content": {
+    "studentInstructions": "Lee la solicitud de reserva y redacta una respuesta profesional. Debes confirmar la información principal y responder a la petición especial.",
+    "teacherNotes": "Puede usarse como prueba breve de writing contextualizado para ciclos de Turismo o Gestión de Alojamientos.",
+    "sections": [
+      {
+        "title": "Guest request",
+        "body": "Dear hotel team, I would like to confirm my booking for 12-15 June for two adults. Could you please arrange a quiet room on a high floor? We will arrive at approximately 22:30. Is late check-in possible?",
+        "tasks": [
+          "Confirm the dates and number of guests.",
+          "Answer the high-floor room request politely.",
+          "Explain the late check-in procedure.",
+          "Use a professional opening and closing."
+        ]
+      },
+      {
+        "title": "Assessment criteria",
+        "body": "The answer should be clear, polite and complete. It should include booking details, late arrival information and a realistic response to the room preference."
+      }
+    ],
+    "answerKey": [
+      "Booking dates: 12-15 June.",
+      "Guests: two adults.",
+      "Late check-in is possible; the reception should be informed or instructions should be provided.",
+      "The room request can be confirmed subject to availability."
+    ]
+  },
+  "tags": ["hotel", "booking", "late-check-in", "exam"],
+  "source": {
+    "generatedBy": "codex",
+    "reviewed": true,
+    "createdAt": "2026-05-27T17:28:00.000Z"
+  }
+}

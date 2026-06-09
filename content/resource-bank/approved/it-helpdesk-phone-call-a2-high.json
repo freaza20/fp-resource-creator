@@ -1,0 +1,41 @@
+{
+  "id": "it-helpdesk-phone-call-a2-high",
+  "title": "Listening guiado: llamada al soporte técnico",
+  "type": "listening",
+  "professionalFamily": "Informática y Comunicaciones",
+  "vocationalLevel": "Grado Medio",
+  "languageLevel": "A2-high",
+  "scenario": "Atender una incidencia técnica sencilla por teléfono",
+  "skillFocus": ["listening", "speaking", "customer-service"],
+  "estimatedMinutes": 30,
+  "content": {
+    "studentInstructions": "Escucha o lee el guion de una llamada de soporte técnico. Completa la ficha de incidencia y practica una respuesta breve con tu compañero.",
+    "teacherNotes": "Hasta que exista generación de audio, el guion puede leerse en voz alta o convertirse en audio con una herramienta externa.",
+    "sections": [
+      {
+        "title": "Call script",
+        "body": "Technician: Good morning, IT support. How can I help you? Customer: Hi, my printer is not working. Technician: Is there an error message on the screen? Customer: Yes, it says paper jam, but there is no paper inside. Technician: Please turn the printer off, wait ten seconds and turn it on again. Customer: OK, it is working now. Thank you.",
+        "tasks": [
+          "Write the customer's problem.",
+          "Write the error message.",
+          "Write the technician's instruction."
+        ]
+      },
+      {
+        "title": "Follow-up speaking",
+        "body": "Student A is the customer. Student B is the technician. Change the problem: slow computer, no internet connection or forgotten password."
+      }
+    ],
+    "answerKey": [
+      "Problem: the printer is not working.",
+      "Error message: paper jam.",
+      "Instruction: turn the printer off, wait ten seconds and turn it on again."
+    ]
+  },
+  "tags": ["helpdesk", "phone-call", "technical-support", "printer"],
+  "source": {
+    "generatedBy": "codex",
+    "reviewed": true,
+    "createdAt": "2026-05-27T17:24:00.000Z"
+  }
+}
