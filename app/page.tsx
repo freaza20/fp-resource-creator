@@ -20,11 +20,16 @@ import { vocabularySets } from "@/lib/mock-data/vocabulary";
 import { useGeneratorStore } from "@/store/useGeneratorStore";
 import { useGroupsStore } from "@/store/useGroupsStore";
 import { useResourcesStore } from "@/store/useResourcesStore";
+import { useSessionStore } from "@/store/useSessionStore";
 
 export default function Home() {
   const groups = useGroupsStore((state) => state.groups);
   const resources = useResourcesStore((state) => state.resources);
   const addResource = useResourcesStore((state) => state.addResource);
+  const currentUser = useSessionStore((state) => state.currentUser);
+  const consumeAiGenerationMock = useSessionStore(
+    (state) => state.consumeAiGenerationMock,
+  );
   const {
     error: generationError,
     generate,
@@ -50,16 +55,20 @@ export default function Home() {
   const currentLevel = selectedLevel ?? currentGroup?.languageLevel ?? "A2";
 
   const handleGenerateResource = async () => {
-    const response = await generate({
-      group: currentGroup,
-      level: currentLevel,
-      grammar: currentGrammar,
-      vocabulary: currentVocabulary,
-      resourceType: currentResourceType,
-      options: defaultGenerationOptions,
-    });
+    const response = await generate(
+      {
+        group: currentGroup,
+        level: currentLevel,
+        grammar: currentGrammar,
+        vocabulary: currentVocabulary,
+        resourceType: currentResourceType,
+        options: defaultGenerationOptions,
+      },
+      currentUser,
+    );
 
     if (response) {
+      consumeAiGenerationMock();
       addResource(response.resource);
     }
   };

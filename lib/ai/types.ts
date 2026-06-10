@@ -11,6 +11,13 @@ export type ResourceType = AppResourceType;
 
 export type DifficultyLevel = "foundation" | "standard" | "challenge";
 
+export type AIProviderId = "mock" | "openai";
+
+export type AIModelId =
+  | "mock-education-generator-v1"
+  | "gpt-5-nano"
+  | "provider-model-pending";
+
 export type ResourceGenerationOptions = {
   difficulty: DifficultyLevel;
   durationMinutes: number;
@@ -31,15 +38,45 @@ export type AIResourceRequest = {
 export type AIResourceResponse = {
   resource: TeachingResource;
   prompt: string;
-  provider: "mock";
-  model: "mock-education-generator-v1";
+  provider: AIProviderId;
+  model: AIModelId;
   metadata: {
     generatedAt: string;
     difficulty: DifficultyLevel;
     durationMinutes: number;
+    estimatedInputTokens: number;
+    estimatedOutputTokens: number;
+    estimatedCostUsd: number;
     requiresTeacherReview: boolean;
   };
 };
+
+export type AIResourceApiRequest = {
+  request: AIResourceRequest;
+  user?: {
+    id: string;
+    plan: string;
+    phoneVerified: boolean;
+    aiGenerationsUsed: number;
+  };
+};
+
+export type AIResourceApiResponse =
+  | {
+      ok: true;
+      data: AIResourceResponse;
+    }
+  | {
+      ok: false;
+      error: {
+        code:
+          | "invalid-request"
+          | "usage-limit"
+          | "provider-error"
+          | "unknown-error";
+        message: string;
+      };
+    };
 
 export type PromptTemplateInput = {
   cycleName: string;

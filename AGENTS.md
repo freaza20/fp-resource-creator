@@ -41,7 +41,8 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - `lib/resource-bank/`: validación y transformación de recursos estructurados.
 - `lib/billing/`: lógica de límites, planes y uso freemium.
 - `lib/adaptation/`: servicios para adaptar recursos de biblioteca a grupos.
-- `lib/ai/`: frontera de IA con tipos, prompts, orquestador y proveedor mock.
+- `lib/ai/`: frontera de IA con tipos, prompts, validación, cliente interno, orquestador y proveedores.
+- `lib/ai/providers/`: interfaz común para proveedor mock y proveedores reales futuros.
 - `store/`: estado cliente modular con Zustand.
 - `hooks/`: hooks de aplicación, como generación de recursos.
 - `components/ui/`: primitivas reutilizables.
@@ -64,7 +65,9 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - Los escenarios profesionales deben ser reutilizables entre familias cuando tenga sentido.
 - Las plantillas editoriales viven en `lib/mock-data/editorial-templates.ts` y deben orientar futuras generaciones IA.
 - Los prompts deben vivir en `lib/ai/prompts/`, separados por tipo de recurso.
-- La UI no debe llamar directamente a proveedores IA. Debe pasar por hooks y servicios de `lib/ai/`.
+- La UI no debe llamar directamente a proveedores IA. Debe pasar por hooks, `lib/ai/client.ts` y Route Handlers internos.
+- La generación de recursos debe entrar por `app/api/ai/generate/route.ts`, incluso cuando el proveedor sea mock.
+- Las claves reales de proveedores IA deben vivir solo en variables de entorno de servidor, nunca en componentes cliente, stores ni hooks.
 - No conectar OpenAI, Supabase, autenticación, pagos ni PDF sin una fase explícita.
 - El modelo freemium actual es mock. La sesión demo persiste en `localStorage` para probar recorridos, pero no debe tratarse como seguridad real hasta conectar Supabase Auth y validación en servidor.
 - El teléfono debe usarse como barrera para activar créditos gratuitos de IA, no como fricción inicial innecesaria.
@@ -118,6 +121,7 @@ La interfaz debe sentirse como una herramienta SaaS profesional para docentes:
 - Si añades un escenario transversal, indica familias aplicables, niveles sugeridos y tipos de recurso.
 - Si añades una plantilla editorial, vincúlala a un escenario existente.
 - Si añades un tipo de recurso, actualiza tipos, prompts, mock service, UI y documentación.
+- Si añades un proveedor IA, implementa `AIResourceProvider` en `lib/ai/providers/` y conserva el contrato de respuesta estructurada.
 - Si generas recursos para el banco, no modifiques UI ni stores; crea JSON compatible con `types/resource-bank.ts`.
 - Prioriza utilidad docente real frente a demostraciones superficiales.
 - Cuando modifiques la biblioteca, mantén separados la carga de datos del banco y la interacción cliente.

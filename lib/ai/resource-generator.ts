@@ -1,8 +1,8 @@
-import { requestMockAIResource } from "@/lib/ai/mock-ai-service";
 import { buildExamPrompt } from "@/lib/ai/prompts/exam-prompts";
 import { buildListeningPrompt } from "@/lib/ai/prompts/listening-prompts";
 import { buildReadingPrompt } from "@/lib/ai/prompts/reading-prompts";
 import { buildWorksheetPrompt } from "@/lib/ai/prompts/worksheet-prompts";
+import { getAIProvider } from "@/lib/ai/providers";
 import { professionalScenarios } from "@/lib/mock-data/professional-scenarios";
 import type {
   AIResourceRequest,
@@ -92,6 +92,10 @@ export async function generateResource(
   }
 
   const prompt = preparePrompt(request);
+  const provider = getAIProvider("mock");
 
-  return requestMockAIResource(request, prompt);
+  return provider.generateResource(request, {
+    prompt,
+    requestId: `mock-request-${Date.now()}`,
+  });
 }

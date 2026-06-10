@@ -76,6 +76,34 @@ const buildResourceContent = (
   return templates[request.resourceType];
 };
 
+const estimateMockUsage = (
+  request: AIResourceRequest,
+  prompt: string,
+): {
+  estimatedInputTokens: number;
+  estimatedOutputTokens: number;
+  estimatedCostUsd: number;
+} => {
+  const estimatedInputTokens = Math.ceil(prompt.length / 4);
+  const outputMultiplier: Record<ResourceType, number> = {
+    exam: 1.35,
+    listening: 0.9,
+    reading: 0.85,
+    worksheet: 1.1,
+  };
+  const estimatedOutputTokens = Math.ceil(
+    estimatedInputTokens * outputMultiplier[request.resourceType],
+  );
+
+  return {
+    estimatedInputTokens,
+    estimatedOutputTokens,
+    estimatedCostUsd:
+      (estimatedInputTokens / 1_000_000) * 0.05 +
+      (estimatedOutputTokens / 1_000_000) * 0.4,
+  };
+};
+
 const createResourceTitle = (
   request: AIResourceRequest,
   context: MockFamilyContext,
@@ -100,6 +128,8 @@ export async function requestMockAIResource(
   }
 
   await new Promise((resolve) => setTimeout(resolve, 250));
+
+  const usageEstimate = estimateMockUsage(request, prompt);
 
   return {
     resource: {
@@ -134,6 +164,7 @@ export async function requestMockAIResource(
       generatedAt,
       difficulty: request.options.difficulty,
       durationMinutes: request.options.durationMinutes,
+      ...usageEstimate,
       requiresTeacherReview: true,
     },
   };

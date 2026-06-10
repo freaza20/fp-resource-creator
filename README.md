@@ -17,6 +17,7 @@ FP Básica se trata como una línea pedagógica propia: `foundation`. No se plan
 - Subniveles lingüísticos A2-low, A2, A2-high, B1-low, B1 y B1-high.
 - Mock data de grupos, vocabulario, gramática, escenarios y recursos.
 - Arquitectura de IA simulada con prompts separados por tipo de recurso.
+- Route Handler interno para generación IA con proveedor mock y control freemium.
 - Estado cliente modular con Zustand.
 - Biblioteca FP inicial conectada a recursos aprobados del banco editorial.
 - Biblioteca avanzada con búsqueda, filtros, vista de detalle y cobertura editorial.
@@ -103,6 +104,7 @@ lib/
   adaptation/
   ai/
     prompts/
+    providers/
   billing/
   resource-bank/
   mock-data/
@@ -188,6 +190,41 @@ Biblioteca
 → Guardar recurso adaptado
 ```
 
+## Arquitectura IA
+
+La Fase 12 prepara la integración real con proveedores IA sin exponer claves ni
+acoplar la UI a un SDK externo.
+
+- `app/api/ai/generate/route.ts`: endpoint interno para generar recursos.
+- `lib/ai/client.ts`: cliente usado por hooks de React.
+- `lib/ai/request-validation.ts`: validación de petición y límites freemium mock.
+- `lib/ai/providers/types.ts`: contrato común de proveedor IA.
+- `lib/ai/providers/mock-provider.ts`: proveedor activo por defecto.
+- `lib/ai/resource-generator.ts`: prepara prompts y delega en el proveedor.
+
+Flujo de generación:
+
+```text
+UI
+→ hook de generación
+→ cliente interno
+→ /api/ai/generate
+→ validación de petición y límite
+→ proveedor IA
+→ respuesta estructurada
+```
+
+La respuesta incluye metadatos de coste estimado:
+
+- tokens de entrada estimados.
+- tokens de salida estimados.
+- coste aproximado en USD.
+- marca de revisión docente obligatoria.
+
+Cuando se conecte una API real, el proveedor deberá implementarse en
+`lib/ai/providers/` y usar variables de entorno de servidor. Las claves no deben
+aparecer en componentes, hooks ni stores.
+
 ## Roadmap Próximo
 
 ### Fase 6: Banco Editorial
@@ -235,12 +272,20 @@ Biblioteca
 - Guardado de recurso adaptado en recursos recientes.
 - Persistencia local de sesión demo para probar verificación, plan y consumo.
 
-### Fase 12: IA Real
+### Fase 12: Frontera IA Segura
 
 - Route Handler seguro para generación.
-- Integración con proveedor IA barato.
-- Salida estructurada en JSON.
-- Límites de uso y control de coste.
+- Capa de proveedor IA intercambiable.
+- Validación de petición y límites freemium mock.
+- Salida estructurada con estimación de tokens y coste.
+- Hook de generación conectado al endpoint interno.
+
+### Fase 12.5: Proveedor IA Real
+
+- Crear cuenta del proveedor seleccionado.
+- Añadir variables de entorno locales.
+- Implementar proveedor real en `lib/ai/providers/`.
+- Probar con presupuesto bajo y límites estrictos.
 
 ### Fase 13: Supabase Y Producto SaaS
 
