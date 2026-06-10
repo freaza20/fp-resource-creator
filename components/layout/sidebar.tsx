@@ -8,6 +8,7 @@ type NavigationItem = {
     | "resources"
     | "generator"
     | "library"
+    | "profile"
     | "settings";
 };
 
@@ -30,6 +31,9 @@ const icons = {
   settings: (
     <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm8 3.5a7.8 7.8 0 0 0-.1-1.2l2-1.5-2-3.4-2.4 1a8 8 0 0 0-2-1.1L15.2 3h-4.4l-.3 2.3a8 8 0 0 0-2 1.1l-2.4-1-2 3.4 2 1.5A7.8 7.8 0 0 0 6 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.4-1a8 8 0 0 0 2 1.1l.3 2.3h4.4l.3-2.3a8 8 0 0 0 2-1.1l2.4 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2Z" />
   ),
+  profile: (
+    <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0v1H5v-1Z" />
+  ),
 };
 
 const navigationItems: NavigationItem[] = [
@@ -48,9 +52,10 @@ const navigationItems: NavigationItem[] = [
     section: "generator",
   },
   { label: "Biblioteca", href: "/library", icon: "library", section: "library" },
+  { label: "Perfil", href: "/profile", icon: "profile", section: "profile" },
   {
     label: "Configuración",
-    href: "/#settings",
+    href: "/settings",
     icon: "settings",
     section: "settings",
   },
@@ -118,7 +123,7 @@ export function Sidebar({
         >
           {navigationItems
             .filter((item) =>
-              ["dashboard", "resources", "generator", "library"].includes(
+              ["dashboard", "resources", "library", "profile"].includes(
                 item.section,
               ),
             )

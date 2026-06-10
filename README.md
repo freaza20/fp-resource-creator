@@ -21,6 +21,8 @@ FP Básica se trata como una línea pedagógica propia: `foundation`. No se plan
 - Biblioteca FP inicial conectada a recursos aprobados del banco editorial.
 - Biblioteca avanzada con búsqueda, filtros, vista de detalle y cobertura editorial.
 - Soporte explícito para `foundation` en FP Básica y `professional` en Grado Medio/Superior.
+- Perfil de usuario mock con plan freemium, verificación de teléfono y límites de uso.
+- Configuración docente inicial para preferencias de generación y adaptación.
 - Validación local del banco de recursos con `npm run validate:resource-bank`.
 - Modelo editorial con familias FP completas, escenarios reutilizables, plantillas y cobertura.
 
@@ -85,6 +87,8 @@ components/
   dashboard/
   library/
   layout/
+  profile/
+  settings/
   ui/
 hooks/
 content/
@@ -96,6 +100,7 @@ docs/
 lib/
   ai/
     prompts/
+  billing/
   resource-bank/
   mock-data/
 scripts/
@@ -138,6 +143,24 @@ El modelo distingue:
 - `foundation`: FP Básica, base comunicativa, apoyo alto y microtareas.
 - `professional`: Grado Medio y Superior, recursos profesionales por familia y situación.
 
+## Modelo Freemium
+
+La app incluye una arquitectura mock para preparar autenticación, perfil y límites antes de conectar Supabase.
+
+- `types/user.ts`: perfil, verificación y preferencias docentes.
+- `types/billing.ts`: planes, límites y eventos de uso.
+- `store/useSessionStore.ts`: sesión mock y acciones simuladas.
+- `lib/mock-data/user-profile.ts`: usuario docente de ejemplo.
+- `lib/mock-data/billing.ts`: planes `Gratuito`, `Pro` y `Centro`.
+- `app/profile`: perfil, verificación y límites.
+- `app/settings`: preferencias docentes.
+
+La estrategia freemium prevista es:
+
+- email verificado para entrar y probar la biblioteca.
+- teléfono verificado para activar créditos gratuitos de IA.
+- planes de pago para ampliar generaciones, grupos, recursos guardados y exportaciones.
+
 ## Roadmap Próximo
 
 ### Fase 6: Banco Editorial
@@ -168,14 +191,13 @@ El modelo distingue:
 - Acción preparada para adaptar recursos en fases posteriores.
 - Adaptación explícita de FP Básica como línea `foundation`.
 
-### Fase 10: Settings Y Configuración Docente
+### Fase 10: Perfil, Freemium Y Configuración Docente
 
-- Preferencias del profesor.
-- Familias profesionales que imparte.
-- Subnivel por grupo.
-- Parámetros de generación.
-- Bancos propios de vocabulario y gramática.
-- Persistencia local inicial.
+- Perfil de usuario mock.
+- Modelo freemium con límites.
+- Verificación de teléfono simulada para activar créditos IA.
+- Preferencias docentes iniciales.
+- Rutas `/profile` y `/settings`.
 
 ### Fase 11: Generador Adaptativo
 

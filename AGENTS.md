@@ -39,12 +39,15 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - `docs/resource-bank-guidelines.md`: guía obligatoria para generar recursos compatibles con el banco.
 - `docs/editorial-model.md`: guía del modelo editorial, criterios de calidad y priorización.
 - `lib/resource-bank/`: validación y transformación de recursos estructurados.
+- `lib/billing/`: lógica de límites, planes y uso freemium.
 - `lib/ai/`: frontera de IA con tipos, prompts, orquestador y proveedor mock.
 - `store/`: estado cliente modular con Zustand.
 - `hooks/`: hooks de aplicación, como generación de recursos.
 - `components/ui/`: primitivas reutilizables.
 - `components/dashboard/`: piezas del dashboard FP.
 - `components/library/`: componentes de la biblioteca FP y del banco de recursos.
+- `components/profile/`: perfil de usuario, plan, verificación y límites.
+- `components/settings/`: preferencias docentes y configuración pedagógica.
 - `components/layout/`: estructura de navegación.
 - `scripts/`: utilidades locales de validación y mantenimiento.
 - `app/`: rutas App Router y composición de página.
@@ -61,6 +64,8 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - Los prompts deben vivir en `lib/ai/prompts/`, separados por tipo de recurso.
 - La UI no debe llamar directamente a proveedores IA. Debe pasar por hooks y servicios de `lib/ai/`.
 - No conectar OpenAI, Supabase, autenticación, pagos ni PDF sin una fase explícita.
+- El modelo freemium actual es mock. No tratarlo como seguridad real hasta conectar Supabase Auth y persistencia.
+- El teléfono debe usarse como barrera para activar créditos gratuitos de IA, no como fricción inicial innecesaria.
 - Las tareas de Codex dedicadas a generar recursos deben escribir solo en `content/resource-bank/pending/` y seguir `docs/resource-bank-guidelines.md`.
 - Los recursos pendientes no deben importarse a la app sin revisión humana.
 - Los recursos aprobados se cargan desde `content/resource-bank/approved/` mediante `lib/resource-bank/approved-resource-bank.ts`.
