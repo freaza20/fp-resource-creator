@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ResourceBankCard } from "@/components/library/resource-bank-card";
 import {
   Card,
@@ -22,6 +23,7 @@ import type {
   ResourceBankCoverageSummary,
   ResourceBankItem,
 } from "@/types/resource-bank";
+import { useAdaptationStore } from "@/store/useAdaptationStore";
 
 type LibraryWorkspaceProps = {
   coverage: ResourceBankCoverageSummary;
@@ -78,6 +80,10 @@ const supportLevelLabels: Record<ResourceBankItem["supportLevel"], string> = {
 };
 
 export function LibraryWorkspace({ coverage, items }: LibraryWorkspaceProps) {
+  const router = useRouter();
+  const selectBaseResource = useAdaptationStore(
+    (state) => state.selectBaseResource,
+  );
   const [filters, setFilters] = useState<LibraryFilters>(defaultFilters);
   const [selectedItemId, setSelectedItemId] = useState(items[0]?.id ?? "");
 
@@ -132,6 +138,11 @@ export function LibraryWorkspace({ coverage, items }: LibraryWorkspaceProps) {
     setFilters(defaultFilters);
   };
 
+  const handleUseAsBase = (item: ResourceBankItem) => {
+    selectBaseResource(item);
+    router.push("/adapt");
+  };
+
   return (
     <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_380px]">
       <div className="flex min-w-0 flex-col gap-4">
@@ -168,7 +179,9 @@ export function LibraryWorkspace({ coverage, items }: LibraryWorkspaceProps) {
       </div>
 
       <aside className="flex flex-col gap-4 xl:sticky xl:top-6 xl:self-start">
-        {selectedItem ? <ResourceDetailPanel item={selectedItem} /> : null}
+        {selectedItem ? (
+          <ResourceDetailPanel item={selectedItem} onUseAsBase={handleUseAsBase} />
+        ) : null}
         <CoveragePanel coverage={coverage} />
       </aside>
     </div>
@@ -316,7 +329,13 @@ function FilterSelect({
   );
 }
 
-function ResourceDetailPanel({ item }: { item: ResourceBankItem }) {
+function ResourceDetailPanel({
+  item,
+  onUseAsBase,
+}: {
+  item: ResourceBankItem;
+  onUseAsBase: (item: ResourceBankItem) => void;
+}) {
   return (
     <Card>
       <CardHeader>
@@ -367,6 +386,7 @@ function ResourceDetailPanel({ item }: { item: ResourceBankItem }) {
           </p>
           <button
             className="h-10 w-full rounded-md bg-zinc-950 px-4 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200"
+            onClick={() => onUseAsBase(item)}
             type="button"
           >
             Usar como base

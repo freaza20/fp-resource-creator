@@ -8,6 +8,7 @@ type NavigationItem = {
     | "resources"
     | "generator"
     | "library"
+    | "adapt"
     | "profile"
     | "settings";
 };
@@ -27,6 +28,9 @@ const icons = {
   ),
   library: (
     <path d="M5 4.5h10A2.5 2.5 0 0 1 17.5 7v13H7A2.5 2.5 0 0 1 4.5 17.5v-13H5Zm2.5 0v13A2.5 2.5 0 0 0 10 20M8 8h6M8 11h6" />
+  ),
+  adapt: (
+    <path d="M4 7h10m0 0-3-3m3 3-3 3M20 17H10m0 0 3-3m-3 3 3 3M6 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm12-6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
   ),
   settings: (
     <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm8 3.5a7.8 7.8 0 0 0-.1-1.2l2-1.5-2-3.4-2.4 1a8 8 0 0 0-2-1.1L15.2 3h-4.4l-.3 2.3a8 8 0 0 0-2 1.1l-2.4-1-2 3.4 2 1.5A7.8 7.8 0 0 0 6 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.4-1a8 8 0 0 0 2 1.1l.3 2.3h4.4l.3-2.3a8 8 0 0 0 2-1.1l2.4 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2Z" />
@@ -52,6 +56,7 @@ const navigationItems: NavigationItem[] = [
     section: "generator",
   },
   { label: "Biblioteca", href: "/library", icon: "library", section: "library" },
+  { label: "Adaptar", href: "/adapt", icon: "adapt", section: "adapt" },
   { label: "Perfil", href: "/profile", icon: "profile", section: "profile" },
   {
     label: "Configuración",
@@ -123,7 +128,7 @@ export function Sidebar({
         >
           {navigationItems
             .filter((item) =>
-              ["dashboard", "resources", "library", "profile"].includes(
+              ["dashboard", "resources", "library", "adapt", "profile"].includes(
                 item.section,
               ),
             )

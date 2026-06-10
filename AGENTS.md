@@ -40,10 +40,12 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - `docs/editorial-model.md`: guía del modelo editorial, criterios de calidad y priorización.
 - `lib/resource-bank/`: validación y transformación de recursos estructurados.
 - `lib/billing/`: lógica de límites, planes y uso freemium.
+- `lib/adaptation/`: servicios para adaptar recursos de biblioteca a grupos.
 - `lib/ai/`: frontera de IA con tipos, prompts, orquestador y proveedor mock.
 - `store/`: estado cliente modular con Zustand.
 - `hooks/`: hooks de aplicación, como generación de recursos.
 - `components/ui/`: primitivas reutilizables.
+- `components/adapt/`: flujo de adaptación de recursos.
 - `components/dashboard/`: piezas del dashboard FP.
 - `components/library/`: componentes de la biblioteca FP y del banco de recursos.
 - `components/profile/`: perfil de usuario, plan, verificación y límites.
@@ -64,8 +66,10 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - Los prompts deben vivir en `lib/ai/prompts/`, separados por tipo de recurso.
 - La UI no debe llamar directamente a proveedores IA. Debe pasar por hooks y servicios de `lib/ai/`.
 - No conectar OpenAI, Supabase, autenticación, pagos ni PDF sin una fase explícita.
-- El modelo freemium actual es mock. No tratarlo como seguridad real hasta conectar Supabase Auth y persistencia.
+- El modelo freemium actual es mock. La sesión demo persiste en `localStorage` para probar recorridos, pero no debe tratarse como seguridad real hasta conectar Supabase Auth y validación en servidor.
 - El teléfono debe usarse como barrera para activar créditos gratuitos de IA, no como fricción inicial innecesaria.
+- La adaptación actual es mock. Debe pasar por `store/useAdaptationStore.ts` y `lib/adaptation/`, no llamarse directamente desde la UI final.
+- El flujo de adaptación debe respetar límites freemium antes de consumir generación IA real o simulada.
 - Las tareas de Codex dedicadas a generar recursos deben escribir solo en `content/resource-bank/pending/` y seguir `docs/resource-bank-guidelines.md`.
 - Los recursos pendientes no deben importarse a la app sin revisión humana.
 - Los recursos aprobados se cargan desde `content/resource-bank/approved/` mediante `lib/resource-bank/approved-resource-bank.ts`.

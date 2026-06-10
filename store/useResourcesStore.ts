@@ -1,6 +1,7 @@
 "use client";
 
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 import { teachingResources } from "@/lib/mock-data/resources";
 import type { TeachingResource } from "@/types/resource";
@@ -21,25 +22,39 @@ const createDuplicatedResource = (
   createdAt: new Date().toISOString(),
 });
 
-export const useResourcesStore = create<ResourcesStore>((set, get) => ({
-  resources: [...teachingResources],
-  addResource: (resource) =>
-    set((state) => ({
-      resources: [resource, ...state.resources],
-    })),
-  deleteResource: (resourceId) =>
-    set((state) => ({
-      resources: state.resources.filter((resource) => resource.id !== resourceId),
-    })),
-  duplicateResource: (resourceId) => {
-    const resource = get().resources.find((item) => item.id === resourceId);
+export const useResourcesStore = create<ResourcesStore>()(
+  persist(
+    (set, get) => ({
+      resources: [...teachingResources],
+      addResource: (resource) =>
+        set((state) => ({
+          resources: [resource, ...state.resources],
+        })),
+      deleteResource: (resourceId) =>
+        set((state) => ({
+          resources: state.resources.filter(
+            (resource) => resource.id !== resourceId,
+          ),
+        })),
+      duplicateResource: (resourceId) => {
+        const resource = get().resources.find((item) => item.id === resourceId);
 
-    if (!resource) {
-      return;
-    }
+        if (!resource) {
+          return;
+        }
 
-    set((state) => ({
-      resources: [createDuplicatedResource(resource), ...state.resources],
-    }));
-  },
-}));
+        set((state) => ({
+          resources: [createDuplicatedResource(resource), ...state.resources],
+        }));
+      },
+    }),
+    {
+      name: "teacher-ai-resources",
+      partialize: (state) => ({
+        resources: state.resources,
+      }),
+      storage: createJSONStorage(() => localStorage),
+      version: 1,
+    },
+  ),
+);

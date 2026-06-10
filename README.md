@@ -23,6 +23,7 @@ FP Básica se trata como una línea pedagógica propia: `foundation`. No se plan
 - Soporte explícito para `foundation` en FP Básica y `professional` en Grado Medio/Superior.
 - Perfil de usuario mock con plan freemium, verificación de teléfono y límites de uso.
 - Configuración docente inicial para preferencias de generación y adaptación.
+- Flujo mock para adaptar recursos de la biblioteca a grupos concretos.
 - Validación local del banco de recursos con `npm run validate:resource-bank`.
 - Modelo editorial con familias FP completas, escenarios reutilizables, plantillas y cobertura.
 
@@ -84,6 +85,7 @@ npm run build
 ```text
 app/
 components/
+  adapt/
   dashboard/
   library/
   layout/
@@ -98,6 +100,7 @@ content/
     rejected/
 docs/
 lib/
+  adaptation/
   ai/
     prompts/
   billing/
@@ -161,6 +164,30 @@ La estrategia freemium prevista es:
 - teléfono verificado para activar créditos gratuitos de IA.
 - planes de pago para ampliar generaciones, grupos, recursos guardados y exportaciones.
 
+Durante la fase mock, la sesión y los recursos creados se persisten en
+`localStorage` con Zustand para validar recorridos entre `/profile`,
+`/settings`, `/adapt` y el dashboard. Esta persistencia no sustituye a Supabase
+Auth ni a la validación real de límites en servidor.
+
+## Adaptación De Recursos
+
+La Fase 11 conecta biblioteca, perfil docente, grupos y límites freemium mediante un flujo mock.
+
+- `types/adaptation.ts`: petición, opciones y resultado de adaptación.
+- `lib/adaptation/mock-adapter.ts`: servicio simulado de adaptación.
+- `store/useAdaptationStore.ts`: estado del recurso base, grupo, opciones y resultado.
+- `app/adapt`: pantalla de adaptación.
+
+Flujo previsto:
+
+```text
+Biblioteca
+→ Usar como base
+→ Adaptar a grupo
+→ Consumir crédito IA mock
+→ Guardar recurso adaptado
+```
+
 ## Roadmap Próximo
 
 ### Fase 6: Banco Editorial
@@ -201,9 +228,12 @@ La estrategia freemium prevista es:
 
 ### Fase 11: Generador Adaptativo
 
-- Usar recurso base como plantilla de adaptación.
-- Combinar preferencias docentes, grupo, banco editorial y prompt IA.
-- Duplicado, adaptación y regeneración controlada.
+- Ruta `/adapt`.
+- Uso de recurso base desde biblioteca.
+- Combinación de preferencias docentes, grupo y banco editorial.
+- Consumo de crédito IA mock.
+- Guardado de recurso adaptado en recursos recientes.
+- Persistencia local de sesión demo para probar verificación, plan y consumo.
 
 ### Fase 12: IA Real
 
