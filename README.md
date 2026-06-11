@@ -203,7 +203,9 @@ acoplar la UI a un SDK externo.
 - `lib/ai/request-validation.ts`: validación de petición y límites freemium mock.
 - `lib/ai/providers/types.ts`: contrato común de proveedor IA.
 - `lib/ai/providers/mock-provider.ts`: proveedor activo por defecto.
+- `lib/ai/providers/mistral-provider.ts`: proveedor Mistral preparado para pruebas reales.
 - `lib/ai/resource-generator.ts`: prepara prompts y delega en el proveedor.
+- `.env.local.example`: plantilla de variables sin claves reales.
 
 Flujo de generación:
 
@@ -227,6 +229,10 @@ La respuesta incluye metadatos de coste estimado:
 Cuando se conecte una API real, el proveedor deberá implementarse en
 `lib/ai/providers/` y usar variables de entorno de servidor. Las claves no deben
 aparecer en componentes, hooks ni stores.
+
+Mistral está preparado como primer proveedor real, pero la app mantiene `mock`
+por defecto hasta crear una API key local. La guía está en
+`docs/mistral-provider-setup.md`.
 
 ## Evaluación De Proveedores IA
 
@@ -314,7 +320,7 @@ claves API.
 
 - Crear cuenta del proveedor seleccionado.
 - Añadir variables de entorno locales.
-- Implementar proveedor real en `lib/ai/providers/`.
+- Implementar proveedor Mistral en `lib/ai/providers/`.
 - Probar con presupuesto bajo y límites estrictos.
 
 ### Fase 13: Supabase Y Producto SaaS

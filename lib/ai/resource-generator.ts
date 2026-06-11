@@ -3,6 +3,7 @@ import { buildListeningPrompt } from "@/lib/ai/prompts/listening-prompts";
 import { buildReadingPrompt } from "@/lib/ai/prompts/reading-prompts";
 import { buildWorksheetPrompt } from "@/lib/ai/prompts/worksheet-prompts";
 import { getAIProvider } from "@/lib/ai/providers";
+import { getConfiguredProviderId } from "@/lib/ai/providers/provider-config";
 import { professionalScenarios } from "@/lib/mock-data/professional-scenarios";
 import type {
   AIResourceRequest,
@@ -92,10 +93,10 @@ export async function generateResource(
   }
 
   const prompt = preparePrompt(request);
-  const provider = getAIProvider("mock");
+  const provider = getAIProvider(getConfiguredProviderId());
 
   return provider.generateResource(request, {
     prompt,
-    requestId: `mock-request-${Date.now()}`,
+    requestId: `${provider.id}-request-${Date.now()}`,
   });
 }

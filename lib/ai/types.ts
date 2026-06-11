@@ -11,10 +11,11 @@ export type ResourceType = AppResourceType;
 
 export type DifficultyLevel = "foundation" | "standard" | "challenge";
 
-export type AIProviderId = "mock" | "openai";
+export type AIProviderId = "mock" | "mistral" | "openai";
 
 export type AIModelId =
   | "mock-education-generator-v1"
+  | "mistral-small-latest"
   | "gpt-5-nano"
   | "provider-model-pending";
 
