@@ -2,6 +2,7 @@
 
 import { RecentResources } from "@/components/dashboard/recent-resources";
 import { DashboardHero } from "@/components/dashboard/dashboard-hero";
+import { GenerationMonitor } from "@/components/dashboard/generation-monitor";
 import { GroupsOverview } from "@/components/dashboard/groups-overview";
 import { QuickGenerator } from "@/components/dashboard/quick-generator";
 import { StatsCard } from "@/components/dashboard/stats-card";
@@ -34,6 +35,8 @@ export default function Home() {
     error: generationError,
     generate,
     isLoading: isGenerating,
+    response: generationResponse,
+    status: generationStatus,
   } = useResourceGeneration();
   const selectedGroup = useGeneratorStore((state) => state.selectedGroup);
   const selectedLevel = useGeneratorStore((state) => state.selectedLevel);
@@ -45,8 +48,10 @@ export default function Home() {
     (state) => state.selectedResourceType,
   );
 
-  const generatedResources = resources.filter((resource) =>
-    resource.id.startsWith("generated-"),
+  const generatedResources = resources.filter(
+    (resource) =>
+      resource.id.startsWith("generated-") ||
+      resource.id.startsWith("mistral-"),
   ).length;
   const currentGroup = selectedGroup ?? groups[0] ?? null;
   const currentGrammar = selectedGrammar ?? grammarTopics[0] ?? null;
@@ -127,8 +132,15 @@ export default function Home() {
               <div id="resources">
                 <RecentResources />
               </div>
-              <div id="groups">
+              <div className="space-y-4">
+                <GenerationMonitor
+                  error={generationError}
+                  response={generationResponse}
+                  status={generationStatus}
+                />
+                <div id="groups">
                 <GroupsOverview />
+                </div>
               </div>
             </section>
           </div>

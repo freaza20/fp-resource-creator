@@ -18,6 +18,7 @@ FP Básica se trata como una línea pedagógica propia: `foundation`. No se plan
 - Mock data de grupos, vocabulario, gramática, escenarios y recursos.
 - Arquitectura de IA simulada con prompts separados por tipo de recurso.
 - Route Handler interno para generación IA con proveedor mock y control freemium.
+- Monitor de generación IA con proveedor, tokens y coste estimado.
 - Estado cliente modular con Zustand.
 - Biblioteca FP inicial conectada a recursos aprobados del banco editorial.
 - Biblioteca avanzada con búsqueda, filtros, vista de detalle y cobertura editorial.
@@ -199,6 +200,7 @@ La Fase 12 prepara la integración real con proveedores IA sin exponer claves ni
 acoplar la UI a un SDK externo.
 
 - `app/api/ai/generate/route.ts`: endpoint interno para generar recursos.
+- `components/dashboard/generation-monitor.tsx`: panel de última generación y coste.
 - `lib/ai/client.ts`: cliente usado por hooks de React.
 - `lib/ai/request-validation.ts`: validación de petición y límites freemium mock.
 - `lib/ai/providers/types.ts`: contrato común de proveedor IA.
@@ -233,6 +235,10 @@ aparecer en componentes, hooks ni stores.
 Mistral está preparado como primer proveedor real, pero la app mantiene `mock`
 por defecto hasta crear una API key local. La guía está en
 `docs/mistral-provider-setup.md`.
+
+El dashboard muestra un monitor de generación con proveedor, modelo, tokens de
+entrada/salida, coste estimado y fecha. Toda llamada real debe poder revisarse
+antes de ampliar el uso a usuarios.
 
 ## Evaluación De Proveedores IA
 
@@ -322,6 +328,7 @@ claves API.
 - Añadir variables de entorno locales.
 - Implementar proveedor Mistral en `lib/ai/providers/`.
 - Probar con presupuesto bajo y límites estrictos.
+- Añadir monitor de generación con metadatos de coste.
 
 ### Fase 13: Supabase Y Producto SaaS
 

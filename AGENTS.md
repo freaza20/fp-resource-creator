@@ -76,6 +76,7 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - Antes de elegir proveedor IA, revisar casos, costes y rúbrica en `docs/ai-provider-evaluation.md`.
 - Mistral solo debe activarse con `AI_PROVIDER=mistral` y `MISTRAL_API_KEY` en `.env.local`.
 - `.env.local.example` puede versionarse; `.env.local` no debe subirse nunca.
+- Toda integración IA real debe exponer proveedor, modelo, tokens y coste estimado en el monitor del dashboard.
 - No conectar OpenAI, Supabase, autenticación, pagos ni PDF sin una fase explícita.
 - El modelo freemium actual es mock. La sesión demo persiste en `localStorage` para probar recorridos, pero no debe tratarse como seguridad real hasta conectar Supabase Auth y validación en servidor.
 - El teléfono debe usarse como barrera para activar créditos gratuitos de IA, no como fricción inicial innecesaria.
