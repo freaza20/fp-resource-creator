@@ -22,7 +22,7 @@ type MistralChatResponse = {
 
 type MistralResourcePayload = {
   title?: string;
-  content?: string;
+  content?: unknown;
   skillFocus?: SkillFocus[];
   teacherNotes?: string;
 };
@@ -73,6 +73,34 @@ const extractJsonObject = (content: string): MistralResourcePayload => {
 
     return JSON.parse(content.slice(start, end + 1)) as MistralResourcePayload;
   }
+};
+
+const stringifyContent = (content: unknown): string => {
+  if (typeof content === "string") {
+    return content;
+  }
+
+  if (Array.isArray(content)) {
+    return content
+      .map((item) => stringifyContent(item))
+      .filter(Boolean)
+      .join("\n\n");
+  }
+
+  if (content && typeof content === "object") {
+    return Object.entries(content)
+      .map(([key, value]) => {
+        const label = key
+          .replace(/([A-Z])/g, " $1")
+          .replace(/^./, (character) => character.toUpperCase());
+
+        return `${label}: ${stringifyContent(value)}`;
+      })
+      .filter(Boolean)
+      .join("\n\n");
+  }
+
+  return "";
 };
 
 const buildSystemPrompt = (): string =>
@@ -164,7 +192,7 @@ export const mistralAIProvider: AIResourceProvider = {
     return {
       resource: {
         content:
-          parsed.content ??
+          stringifyContent(parsed.content) ||
           "La respuesta de Mistral no incluyó contenido suficiente para el recurso.",
         createdAt: generatedAt,
         id: `mistral-${request.resourceType}-${Date.now()}`,

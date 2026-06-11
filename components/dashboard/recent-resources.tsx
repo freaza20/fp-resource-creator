@@ -26,6 +26,20 @@ const formatDate = (date: string): string =>
     month: "short",
   }).format(new Date(date));
 
+const formatResourceContent = (content: unknown): string => {
+  if (typeof content === "string") {
+    return content;
+  }
+
+  if (content && typeof content === "object") {
+    return Object.values(content)
+      .map((value) => (typeof value === "string" ? value : JSON.stringify(value)))
+      .join(" ");
+  }
+
+  return "";
+};
+
 export function RecentResources() {
   const resources = useResourcesStore((state) => state.resources);
   const duplicateResource = useResourcesStore((state) => state.duplicateResource);
@@ -69,7 +83,7 @@ export function RecentResources() {
                   {resource.title}
                 </h3>
                 <p className="line-clamp-2 text-sm leading-6 text-zinc-500 dark:text-zinc-400">
-                  {resource.content}
+                  {formatResourceContent(resource.content)}
                 </p>
               </div>
               <button
