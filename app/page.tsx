@@ -2,6 +2,7 @@
 
 import { RecentResources } from "@/components/dashboard/recent-resources";
 import { DashboardHero } from "@/components/dashboard/dashboard-hero";
+import { GenerationHistory } from "@/components/dashboard/generation-history";
 import { GenerationMonitor } from "@/components/dashboard/generation-monitor";
 import { GroupsOverview } from "@/components/dashboard/groups-overview";
 import { QuickGenerator } from "@/components/dashboard/quick-generator";
@@ -19,6 +20,7 @@ import { grammarTopics } from "@/lib/mock-data/grammar";
 import { professionalFamilies } from "@/lib/mock-data/professional-families";
 import { vocabularySets } from "@/lib/mock-data/vocabulary";
 import { useGeneratorStore } from "@/store/useGeneratorStore";
+import { useGenerationHistoryStore } from "@/store/useGenerationHistoryStore";
 import { useGroupsStore } from "@/store/useGroupsStore";
 import { useResourcesStore } from "@/store/useResourcesStore";
 import { useSessionStore } from "@/store/useSessionStore";
@@ -27,6 +29,12 @@ export default function Home() {
   const groups = useGroupsStore((state) => state.groups);
   const resources = useResourcesStore((state) => state.resources);
   const addResource = useResourcesStore((state) => state.addResource);
+  const addGenerationSuccessEvent = useGenerationHistoryStore(
+    (state) => state.addSuccessEvent,
+  );
+  const addGenerationErrorEvent = useGenerationHistoryStore(
+    (state) => state.addErrorEvent,
+  );
   const currentUser = useSessionStore((state) => state.currentUser);
   const consumeAiGenerationMock = useSessionStore(
     (state) => state.consumeAiGenerationMock,
@@ -60,21 +68,26 @@ export default function Home() {
   const currentLevel = selectedLevel ?? currentGroup?.languageLevel ?? "A2";
 
   const handleGenerateResource = async () => {
-    const response = await generate(
-      {
-        group: currentGroup,
-        level: currentLevel,
-        grammar: currentGrammar,
-        vocabulary: currentVocabulary,
-        resourceType: currentResourceType,
-        options: defaultGenerationOptions,
-      },
-      currentUser,
-    );
+    const request = {
+      group: currentGroup,
+      level: currentLevel,
+      grammar: currentGrammar,
+      vocabulary: currentVocabulary,
+      resourceType: currentResourceType,
+      options: defaultGenerationOptions,
+    };
+    const response = await generate(request, currentUser);
 
     if (response) {
       consumeAiGenerationMock();
       addResource(response.resource);
+      addGenerationSuccessEvent(response, request, currentUser);
+    } else {
+      addGenerationErrorEvent(
+        generationError ?? "No se pudo generar el recurso.",
+        request,
+        currentUser,
+      );
     }
   };
 
@@ -114,7 +127,7 @@ export default function Home() {
                 value={resources.length}
               />
               <StatsCard
-                description="Recursos creados desde la arquitectura IA simulada."
+                description="Recursos creados desde el proveedor IA activo."
                 icon={<SparkIcon />}
                 title="Generados"
                 tone="amber"
@@ -138,8 +151,9 @@ export default function Home() {
                   response={generationResponse}
                   status={generationStatus}
                 />
+                <GenerationHistory />
                 <div id="groups">
-                <GroupsOverview />
+                  <GroupsOverview />
                 </div>
               </div>
             </section>

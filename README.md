@@ -19,6 +19,7 @@ FP Básica se trata como una línea pedagógica propia: `foundation`. No se plan
 - Arquitectura de IA simulada con prompts separados por tipo de recurso.
 - Route Handler interno para generación IA con proveedor mock y control freemium.
 - Monitor de generación IA con proveedor, tokens y coste estimado.
+- Historial local de generaciones IA con eventos, errores y coste acumulado.
 - Estado cliente modular con Zustand.
 - Biblioteca FP inicial conectada a recursos aprobados del banco editorial.
 - Biblioteca avanzada con búsqueda, filtros, vista de detalle y cobertura editorial.
@@ -201,6 +202,7 @@ acoplar la UI a un SDK externo.
 
 - `app/api/ai/generate/route.ts`: endpoint interno para generar recursos.
 - `components/dashboard/generation-monitor.tsx`: panel de última generación y coste.
+- `components/dashboard/generation-history.tsx`: historial local de eventos IA.
 - `lib/ai/client.ts`: cliente usado por hooks de React.
 - `lib/ai/request-validation.ts`: validación de petición y límites freemium mock.
 - `lib/ai/providers/types.ts`: contrato común de proveedor IA.
@@ -208,6 +210,8 @@ acoplar la UI a un SDK externo.
 - `lib/ai/providers/mistral-provider.ts`: proveedor Mistral preparado para pruebas reales.
 - `lib/ai/resource-generator.ts`: prepara prompts y delega en el proveedor.
 - `.env.local.example`: plantilla de variables sin claves reales.
+- `types/generation-history.ts`: contrato de eventos para futura tabla Supabase.
+- `store/useGenerationHistoryStore.ts`: persistencia local de historial IA.
 
 Flujo de generación:
 
@@ -239,6 +243,10 @@ por defecto hasta crear una API key local. La guía está en
 El dashboard muestra un monitor de generación con proveedor, modelo, tokens de
 entrada/salida, coste estimado y fecha. Toda llamada real debe poder revisarse
 antes de ampliar el uso a usuarios.
+
+El historial local registra eventos `success` y `error` con proveedor, modelo,
+tokens, coste, recurso asociado y usuario mock. En Supabase podrá migrarse a una
+tabla `generation_events`.
 
 ## Evaluación De Proveedores IA
 
@@ -329,6 +337,7 @@ claves API.
 - Implementar proveedor Mistral en `lib/ai/providers/`.
 - Probar con presupuesto bajo y límites estrictos.
 - Añadir monitor de generación con metadatos de coste.
+- Añadir historial local de generaciones para preparar auditoría y Supabase.
 
 ### Fase 13: Supabase Y Producto SaaS
 
