@@ -48,6 +48,8 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - `lib/ai-evaluation/`: cálculo de costes y ranking provisional de proveedores IA.
 - `store/`: estado cliente modular con Zustand.
 - `hooks/`: hooks de aplicación, como generación de recursos.
+- `components/auth/`: guard mock para rutas privadas antes de Supabase Auth.
+- `components/landing/`: landing pública y muestras descargables.
 - `components/ui/`: primitivas reutilizables.
 - `components/ai-evaluation/`: herramienta interna para evaluar proveedores IA.
 - `components/adapt/`: flujo de adaptación de recursos.
@@ -80,6 +82,8 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - Toda generación IA real o mock debe registrarse en `store/useGenerationHistoryStore.ts` para futura auditoría.
 - No conectar OpenAI, Supabase, autenticación, pagos ni PDF sin una fase explícita.
 - El modelo freemium actual es mock. La sesión demo persiste en `localStorage` para probar recorridos, pero no debe tratarse como seguridad real hasta conectar Supabase Auth y validación en servidor.
+- `/` es público. Las rutas de producto deben vivir tras sesión mock, empezando por `/dashboard`.
+- Las muestras públicas pueden descargarse sin login, pero biblioteca completa, generación y adaptación IA deben requerir sesión.
 - El teléfono debe usarse como barrera para activar créditos gratuitos de IA, no como fricción inicial innecesaria.
 - La adaptación actual es mock. Debe pasar por `store/useAdaptationStore.ts` y `lib/adaptation/`, no llamarse directamente desde la UI final.
 - El flujo de adaptación debe respetar límites freemium antes de consumir generación IA real o simulada.

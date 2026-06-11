@@ -1,9 +1,11 @@
 import { AdaptWorkspace } from "@/components/adapt/adapt-workspace";
+import { PrivateRoute } from "@/components/auth/private-route";
 import { Sidebar } from "@/components/layout/sidebar";
 
 export default function AdaptPage() {
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-950 dark:bg-black dark:text-zinc-50">
+    <PrivateRoute>
+      <div className="min-h-screen bg-zinc-50 text-zinc-950 dark:bg-black dark:text-zinc-50">
       <div className="flex min-h-screen flex-col lg:flex-row">
         <Sidebar activeSection="adapt" />
 
@@ -13,6 +15,7 @@ export default function AdaptPage() {
           </div>
         </main>
       </div>
-    </div>
+      </div>
+    </PrivateRoute>
   );
 }

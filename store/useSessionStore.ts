@@ -21,8 +21,8 @@ type SessionStore = {
 export const useSessionStore = create<SessionStore>()(
   persist(
     (set) => ({
-      currentUser: mockUserProfile,
-      isAuthenticated: true,
+      currentUser: null,
+      isAuthenticated: false,
       loginMock: () =>
         set({
           currentUser: mockUserProfile,

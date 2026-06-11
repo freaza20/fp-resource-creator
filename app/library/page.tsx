@@ -1,3 +1,4 @@
+import { PrivateRoute } from "@/components/auth/private-route";
 import { LibraryWorkspace } from "@/components/library/library-workspace";
 import { Sidebar } from "@/components/layout/sidebar";
 import {
@@ -16,7 +17,8 @@ const featuredFilters = [
 
 export default function LibraryPage() {
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-950 dark:bg-black dark:text-zinc-50">
+    <PrivateRoute>
+      <div className="min-h-screen bg-zinc-50 text-zinc-950 dark:bg-black dark:text-zinc-50">
       <div className="flex min-h-screen flex-col lg:flex-row">
         <Sidebar activeSection="library" />
 
@@ -66,7 +68,8 @@ export default function LibraryPage() {
           </div>
         </main>
       </div>
-    </div>
+      </div>
+    </PrivateRoute>
   );
 }
 

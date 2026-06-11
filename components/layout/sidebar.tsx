@@ -45,17 +45,22 @@ const icons = {
 };
 
 const navigationItems: NavigationItem[] = [
-  { label: "Panel", href: "/", icon: "dashboard", section: "dashboard" },
-  { label: "Grupos", href: "/#groups", icon: "groups", section: "groups" },
+  { label: "Panel", href: "/dashboard", icon: "dashboard", section: "dashboard" },
+  {
+    label: "Grupos",
+    href: "/dashboard#groups",
+    icon: "groups",
+    section: "groups",
+  },
   {
     label: "Recursos",
-    href: "/#resources",
+    href: "/dashboard#resources",
     icon: "resources",
     section: "resources",
   },
   {
     label: "Generador",
-    href: "/#generator",
+    href: "/dashboard#generator",
     icon: "generator",
     section: "generator",
   },

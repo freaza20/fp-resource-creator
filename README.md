@@ -13,6 +13,9 @@ FP Básica se trata como una línea pedagógica propia: `foundation`. No se plan
 ## Funcionalidades Actuales
 
 - Dashboard FP-first con grupos, recursos recientes y métricas.
+- Landing pública en `/` con propuesta de valor y muestras descargables.
+- Zona privada mock en `/dashboard`, `/library`, `/adapt`, `/profile`,
+  `/settings` y `/ai-evaluation`.
 - Taxonomía base de familias profesionales.
 - Subniveles lingüísticos A2-low, A2, A2-high, B1-low, B1 y B1-high.
 - Mock data de grupos, vocabulario, gramática, escenarios y recursos.
@@ -88,7 +91,10 @@ npm run build
 
 ```text
 app/
+  dashboard/
 components/
+  auth/
+  landing/
   ai-evaluation/
   adapt/
   dashboard/
@@ -157,6 +163,10 @@ El modelo distingue:
 
 La app incluye una arquitectura mock para preparar autenticación, perfil y límites antes de conectar Supabase.
 
+- `app/page.tsx`: landing pública para visitantes.
+- `app/dashboard`: dashboard privado de trabajo.
+- `components/auth/private-route.tsx`: guard mock para rutas privadas.
+- `components/landing/public-home.tsx`: página pública de bienvenida y muestras.
 - `types/user.ts`: perfil, verificación y preferencias docentes.
 - `types/billing.ts`: planes, límites y eventos de uso.
 - `store/useSessionStore.ts`: sesión mock y acciones simuladas.
@@ -175,6 +185,15 @@ Durante la fase mock, la sesión y los recursos creados se persisten en
 `localStorage` con Zustand para validar recorridos entre `/profile`,
 `/settings`, `/adapt` y el dashboard. Esta persistencia no sustituye a Supabase
 Auth ni a la validación real de límites en servidor.
+
+Rutas públicas y privadas:
+
+- `/`: landing pública con información del producto y muestras descargables.
+- `/dashboard`: panel privado tras login.
+- `/library`: biblioteca completa privada.
+- `/adapt`: adaptación IA privada.
+- `/profile` y `/settings`: perfil y configuración privados.
+- `/ai-evaluation`: herramienta interna privada.
 
 ## Adaptación De Recursos
 
@@ -339,7 +358,15 @@ claves API.
 - Añadir monitor de generación con metadatos de coste.
 - Añadir historial local de generaciones para preparar auditoría y Supabase.
 
-### Fase 13: Supabase Y Producto SaaS
+### Fase 13: Estructura Pública/Privada Mock
+
+- Landing pública en `/`.
+- Dashboard privado en `/dashboard`.
+- Guard mock para rutas privadas.
+- Muestras descargables sin login.
+- Preparación para Supabase Auth real.
+
+### Fase 14: Supabase Y Producto SaaS
 
 - Autenticación.
 - Persistencia de grupos, recursos y bancos.
