@@ -38,14 +38,17 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - `content/resource-bank/`: entrada editorial para recursos generados por tareas separadas de Codex.
 - `docs/resource-bank-guidelines.md`: guía obligatoria para generar recursos compatibles con el banco.
 - `docs/editorial-model.md`: guía del modelo editorial, criterios de calidad y priorización.
+- `docs/ai-provider-evaluation.md`: guía para comparar proveedores IA antes de conectar APIs reales.
 - `lib/resource-bank/`: validación y transformación de recursos estructurados.
 - `lib/billing/`: lógica de límites, planes y uso freemium.
 - `lib/adaptation/`: servicios para adaptar recursos de biblioteca a grupos.
 - `lib/ai/`: frontera de IA con tipos, prompts, validación, cliente interno, orquestador y proveedores.
 - `lib/ai/providers/`: interfaz común para proveedor mock y proveedores reales futuros.
+- `lib/ai-evaluation/`: cálculo de costes y ranking provisional de proveedores IA.
 - `store/`: estado cliente modular con Zustand.
 - `hooks/`: hooks de aplicación, como generación de recursos.
 - `components/ui/`: primitivas reutilizables.
+- `components/ai-evaluation/`: herramienta interna para evaluar proveedores IA.
 - `components/adapt/`: flujo de adaptación de recursos.
 - `components/dashboard/`: piezas del dashboard FP.
 - `components/library/`: componentes de la biblioteca FP y del banco de recursos.
@@ -68,6 +71,8 @@ Antes de modificar código de Next.js, consulta la documentación local en `node
 - La UI no debe llamar directamente a proveedores IA. Debe pasar por hooks, `lib/ai/client.ts` y Route Handlers internos.
 - La generación de recursos debe entrar por `app/api/ai/generate/route.ts`, incluso cuando el proveedor sea mock.
 - Las claves reales de proveedores IA deben vivir solo en variables de entorno de servidor, nunca en componentes cliente, stores ni hooks.
+- La ruta `/ai-evaluation` es interna y preparatoria. No debe llamar APIs reales hasta una fase explícita de benchmark conectado.
+- Antes de elegir proveedor IA, revisar casos, costes y rúbrica en `docs/ai-provider-evaluation.md`.
 - No conectar OpenAI, Supabase, autenticación, pagos ni PDF sin una fase explícita.
 - El modelo freemium actual es mock. La sesión demo persiste en `localStorage` para probar recorridos, pero no debe tratarse como seguridad real hasta conectar Supabase Auth y validación en servidor.
 - El teléfono debe usarse como barrera para activar créditos gratuitos de IA, no como fricción inicial innecesaria.

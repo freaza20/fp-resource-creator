@@ -9,6 +9,7 @@ type NavigationItem = {
     | "generator"
     | "library"
     | "adapt"
+    | "ai-evaluation"
     | "profile"
     | "settings";
 };
@@ -31,6 +32,9 @@ const icons = {
   ),
   adapt: (
     <path d="M4 7h10m0 0-3-3m3 3-3 3M20 17H10m0 0 3-3m-3 3 3 3M6 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm12-6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+  ),
+  evaluation: (
+    <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-13Zm4 10 2.5-3 2 2L16 9m-8 0h2m-2 3h1" />
   ),
   settings: (
     <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm8 3.5a7.8 7.8 0 0 0-.1-1.2l2-1.5-2-3.4-2.4 1a8 8 0 0 0-2-1.1L15.2 3h-4.4l-.3 2.3a8 8 0 0 0-2 1.1l-2.4-1-2 3.4 2 1.5A7.8 7.8 0 0 0 6 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.4-1a8 8 0 0 0 2 1.1l.3 2.3h4.4l.3-2.3a8 8 0 0 0 2-1.1l2.4 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2Z" />
@@ -57,6 +61,12 @@ const navigationItems: NavigationItem[] = [
   },
   { label: "Biblioteca", href: "/library", icon: "library", section: "library" },
   { label: "Adaptar", href: "/adapt", icon: "adapt", section: "adapt" },
+  {
+    label: "Evaluación IA",
+    href: "/ai-evaluation",
+    icon: "evaluation",
+    section: "ai-evaluation",
+  },
   { label: "Perfil", href: "/profile", icon: "profile", section: "profile" },
   {
     label: "Configuración",
@@ -128,9 +138,14 @@ export function Sidebar({
         >
           {navigationItems
             .filter((item) =>
-              ["dashboard", "resources", "library", "adapt", "profile"].includes(
-                item.section,
-              ),
+              [
+                "dashboard",
+                "resources",
+                "library",
+                "adapt",
+                "ai-evaluation",
+                "profile",
+              ].includes(item.section),
             )
             .map((item) => (
               <a

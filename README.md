@@ -25,6 +25,7 @@ FP Básica se trata como una línea pedagógica propia: `foundation`. No se plan
 - Perfil de usuario mock con plan freemium, verificación de teléfono y límites de uso.
 - Configuración docente inicial para preferencias de generación y adaptación.
 - Flujo mock para adaptar recursos de la biblioteca a grupos concretos.
+- Evaluación interna de proveedores IA antes de conectar APIs reales.
 - Validación local del banco de recursos con `npm run validate:resource-bank`.
 - Modelo editorial con familias FP completas, escenarios reutilizables, plantillas y cobertura.
 
@@ -86,6 +87,7 @@ npm run build
 ```text
 app/
 components/
+  ai-evaluation/
   adapt/
   dashboard/
   library/
@@ -105,6 +107,7 @@ lib/
   ai/
     prompts/
     providers/
+  ai-evaluation/
   billing/
   resource-bank/
   mock-data/
@@ -225,6 +228,24 @@ Cuando se conecte una API real, el proveedor deberá implementarse en
 `lib/ai/providers/` y usar variables de entorno de servidor. Las claves no deben
 aparecer en componentes, hooks ni stores.
 
+## Evaluación De Proveedores IA
+
+La Fase 12.6 añade una herramienta interna para comparar proveedores antes de
+activar llamadas reales.
+
+- `app/ai-evaluation`: pantalla interna de evaluación.
+- `components/ai-evaluation/`: composición visual del benchmark.
+- `types/ai-evaluation.ts`: contratos de modelos, casos, criterios y coste.
+- `lib/mock-data/ai-model-candidates.ts`: modelos candidatos y precios.
+- `lib/mock-data/ai-evaluation-cases.ts`: casos reales de FP y rúbrica.
+- `lib/ai-evaluation/cost-estimator.ts`: cálculo de coste estimado.
+- `lib/ai-evaluation/recommendation.ts`: ranking provisional.
+- `docs/ai-provider-evaluation.md`: guía de decisión.
+
+La evaluación actual no llama a proveedores externos. Sirve para que el criterio
+docente revise casos, prioridades y riesgos antes de crear cuentas o introducir
+claves API.
+
 ## Roadmap Próximo
 
 ### Fase 6: Banco Editorial
@@ -280,7 +301,16 @@ aparecer en componentes, hooks ni stores.
 - Salida estructurada con estimación de tokens y coste.
 - Hook de generación conectado al endpoint interno.
 
-### Fase 12.5: Proveedor IA Real
+### Fase 12.6: Evaluación De Proveedores IA
+
+- Pantalla interna `/ai-evaluation`.
+- Matriz de modelos candidatos.
+- Casos reales de FP para benchmark.
+- Rúbrica docente ponderada.
+- Coste estimado por recurso y por 1.000 recursos.
+- Recomendación provisional antes de conectar APIs.
+
+### Fase 12.7: Proveedor IA Real
 
 - Crear cuenta del proveedor seleccionado.
 - Añadir variables de entorno locales.
